@@ -1594,7 +1594,7 @@
           <label>Tell me about your project *</label>
           <textarea id="fmsg" placeholder="Describe your idea, requirements, or questions…"></textarea>
         </div>
-        <button class="form-submit" onclick="submitForm()">Send Message</button>
+        <button type="button" class="form-submit" onclick="submitForm()">Send Message</button>
       </div>
     </div>
   </div>
@@ -1635,16 +1635,48 @@
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
 
-  // Form
-  function submitForm() {
+  // Form — emails via FormSubmit (https://formsubmit.co) to vijaysharma6918h@gmail.com
+  async function submitForm() {
     const name = document.getElementById('fname').value.trim();
     const email = document.getElementById('femail').value.trim();
     const msg = document.getElementById('fmsg').value.trim();
-    if (!name || !email || !msg) { alert('Please fill in your name, email, and message.'); return; }
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-    // In production, replace with actual form submission (Formspree, EmailJS, etc.)
-    console.log('Form data:', { name, email, msg });
+    const projectType = document.getElementById('ftype').value.trim();
+    const budget = document.getElementById('fbudget').value.trim();
+    if (!name || !email || !msg) {
+      alert('Please fill in your name, email, and message.');
+      return;
+    }
+    const btn = document.querySelector('#contactForm .form-submit');
+    const label = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/vijaysharma6918h@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          _subject: 'New message from Vijay.dev contact form',
+          _replyto: email,
+          message:
+            'Project type: ' + (projectType || '—') +
+            '\nBudget: ' + (budget || '—') +
+            '\n\n' +
+            msg,
+        }),
+      });
+      const data = await res.json().catch(function () { return {}; });
+      if (!res.ok) throw new Error(data.message || data.error || 'Request failed');
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (e) {
+      alert('Could not send the message. Please try again or email vijaysharma6918h@gmail.com directly.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = label;
+    }
   }
 
   // Smooth nav highlight
