@@ -1,20 +1,1657 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vijay.dev</title>
-    <meta http-equiv="refresh" content="0; url=./index%20(4).html" />
-    <meta name="robots" content="noindex" />
-    <style>
-      body {
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-        padding: 24px;
-      }
-    </style>
-  </head>
-  <body>
-    <p>Redirecting… If you are not redirected, open <a href="./index%20(4).html">the site</a>.</p>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vijay Sharma — Full-Stack Developer & Freelance Team | React, Next.js, Node.js, AI Solutions</title>
+  <meta name="description" content="Vijay Sharma is a full-stack developer and freelance team lead with 8+ years of experience building scalable web apps, SaaS platforms, AI solutions, and eCommerce stores using React, Next.js, Angular, Node.js, Shopify, and WordPress." />
+  <meta name="keywords" content="full stack developer, freelance developer India, React developer, Next.js developer, Node.js developer, Angular developer, Shopify developer, WordPress developer, AI solutions, SaaS development, hire developer, web development team" />
+  <meta name="author" content="Vijay Sharma" />
+  <meta property="og:title" content="Vijay Sharma — Full-Stack Developer & Freelance Team" />
+  <meta property="og:description" content="8+ years building scalable web & AI solutions. React, Next.js, Node.js, Shopify, and more." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg: #080b12;
+      --surface: #0e1420;
+      --surface2: #141b2a;
+      --border: rgba(255,255,255,0.07);
+      --accent: #3b82f6;
+      --accent2: #06b6d4;
+      --accent3: #8b5cf6;
+      --gold: #f59e0b;
+      --text: #e8edf5;
+      --muted: #7a8ba8;
+      --heading: 'Syne', sans-serif;
+      --body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(8,11,18,0.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--heading);
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 0.45rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+      transition: background 0.2s, transform 0.1s !important;
+    }
+
+    .nav-cta:hover { background: #2563eb !important; transform: translateY(-1px); }
+
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px clamp(1.5rem, 5vw, 4rem) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+      top: -100px; right: -150px;
+      pointer-events: none;
+    }
+
+    .hero-glow2 {
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%);
+      bottom: 0; left: -100px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.25);
+      color: var(--accent2);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    .hero-title {
+      font-family: var(--heading);
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.07;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-title .line2 { color: var(--accent); }
+    .hero-title .line3 { 
+      background: linear-gradient(135deg, var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+      line-height: 1.75;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      border: none; cursor: pointer;
+    }
+
+    .btn-primary:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59,130,246,0.35); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--text);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.25); background: var(--surface); transform: translateY(-2px); }
+
+    .btn-whatsapp {
+      background: #22c55e;
+    }
+    .btn-whatsapp:hover { background: #16a34a !important; box-shadow: 0 8px 30px rgba(34,197,94,0.35) !important; }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .trust-item .check { color: #22c55e; font-size: 0.9rem; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 100px clamp(1.5rem, 5vw, 4rem); position: relative; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--heading);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--surface); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-process {
+      display: flex;
+      gap: 0;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      flex: 1;
+      min-width: 70px;
+    }
+
+    .process-dot {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--heading);
+      color: #fff;
+      position: relative;
+    }
+
+    .process-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .process-line {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      align-self: center;
+      min-width: 12px;
+      max-width: 30px;
+      margin-top: -22px;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .stat-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-3px); }
+
+    .stat-number {
+      font-family: var(--heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--bg); }
+
+    .services-header { max-width: 1200px; margin: 0 auto 4rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(59,130,246,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-icon-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,0.35));
+    }
+
+    .service-title {
+      font-family: var(--heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .service-list li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .service-list li::before {
+      content: '→';
+      color: var(--accent2);
+      font-size: 0.75rem;
+    }
+
+    /* ─── TECH STACK ─── */
+    #tech { background: var(--surface); }
+
+    .tech-header { max-width: 1200px; margin: 0 auto 3rem; }
+
+    .tech-groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tech-group {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+
+    .tech-group-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-tag {
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.15);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      transition: all 0.15s;
+    }
+
+    .tech-tag:hover { background: rgba(59,130,246,0.18); border-color: rgba(59,130,246,0.4); }
+
+    /* ─── WHY US ─── */
+    #why { background: var(--bg); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .why-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .why-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.2rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+
+    .why-item:hover { border-color: rgba(59,130,246,0.3); transform: translateX(4px); }
+
+    .why-check {
+      width: 24px; height: 24px;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .why-text { font-size: 0.95rem; color: var(--text); font-weight: 500; }
+    .why-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.15rem; }
+
+    .why-cta-box {
+      background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.08));
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .why-cta-box .quote {
+      font-family: var(--heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .why-cta-box .quote em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── PORTFOLIO ─── */
+    #portfolio { background: var(--surface); }
+
+    .portfolio-header { max-width: 1200px; margin: 0 auto 3rem; }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.25s;
+      cursor: default;
+    }
+
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); border-color: rgba(59,130,246,0.25); }
+
+    .project-visual {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pv-1 { background: linear-gradient(135deg, #1e3a5f, #1a2a4a); }
+    .pv-2 { background: linear-gradient(135deg, #1a3a2e, #0f2920); }
+    .pv-3 { background: linear-gradient(135deg, #2e1a3a, #1d0f2a); }
+    .pv-4 { background: linear-gradient(135deg, #3a2a1a, #2a1a0a); }
+    .pv-5 { background: linear-gradient(135deg, #1a2a3a, #0f1a2e); }
+
+    .project-body { padding: 1.5rem; }
+
+    .project-name {
+      font-family: var(--heading);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .project-tag {
+      background: rgba(6,182,212,0.08);
+      border: 1px solid rgba(6,182,212,0.2);
+      color: var(--accent2);
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials { background: var(--bg); }
+
+    .testimonials-header { max-width: 1200px; margin: 0 auto 3rem; }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .testimonial-card:hover { border-color: rgba(245,158,11,0.3); transform: translateY(-3px); }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .author-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #fff;
+    }
+
+    .av1 { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+    .av2 { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+    .av3 { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+
+    .author-name { font-size: 0.85rem; font-weight: 600; }
+    .author-role { font-size: 0.75rem; color: var(--muted); }
+
+    .upwork-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(20,195,142,0.1);
+      border: 1px solid rgba(20,195,142,0.25);
+      color: #14c38e;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      margin-top: 0.75rem;
+    }
+
+    /* ─── CTA BAND ─── */
+    #cta {
+      background: linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(139,92,246,0.08) 50%, rgba(6,182,212,0.06) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .cta-inner { max-width: 700px; margin: 0 auto; }
+
+    .cta-title {
+      font-family: var(--heading);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    .cta-title span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-desc { color: var(--muted); font-size: 1rem; margin-bottom: 2.5rem; }
+
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--surface); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .contact-info { padding-top: 0.5rem; }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+    .contact-value { font-size: 0.95rem; font-weight: 500; color: var(--text); }
+    .contact-value a { color: inherit; text-decoration: none; }
+    .contact-value a:hover { color: var(--accent2); }
+
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.1rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .social-link:hover { border-color: rgba(59,130,246,0.4); color: var(--accent2); transform: translateY(-2px); }
+
+    /* ─── FORM ─── */
+    .contact-form {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--accent); }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-group select option { background: var(--surface); }
+
+    .form-submit {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .form-submit:hover { background: #2563eb; transform: translateY(-1px); box-shadow: 0 8px 30px rgba(59,130,246,0.3); }
+
+    #form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: #22c55e;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 3rem clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--heading);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-tagline { font-size: 0.82rem; color: var(--muted); }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy { font-size: 0.8rem; color: var(--muted); text-align: right; }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(8,11,18,0.97);
+      backdrop-filter: blur(20px);
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      padding: 1.5rem;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+    }
+
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-weight: 500; }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .about-grid,
+      .why-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-copy { text-align: left; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .about-stats { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns a, .hero-btns button { width: 100%; justify-content: center; }
+      .cta-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Vijay<span>.</span>dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tech">Stack</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#tech" onclick="closeMobile()">Tech Stack</a>
+  <a href="#portfolio" onclick="closeMobile()">Work</a>
+  <a href="#testimonials" onclick="closeMobile()">Testimonials</a>
+  <a href="#contact" onclick="closeMobile()">Contact / Hire Me</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">Available for Projects</div>
+    <h1 class="hero-title">
+      Full-Stack Developer<br>
+      <span class="line2">&amp; Freelance Team</span><br>
+      <span class="line3">Delivering Scalable Solutions</span>
+    </h1>
+    <p class="hero-sub">
+      Hi, I'm <strong>Vijay Sharma</strong> — a full-stack developer and freelance team lead. We help startups and businesses build powerful, fast, and scalable applications using React, Next.js, Angular, Node.js, AI integrations, and more.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Hire Me</a>
+      <a href="https://wa.me/918527594730?text=Hi%20Vijay%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener" class="btn-primary btn-whatsapp">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+        Chat on WhatsApp
+      </a>
+      <a href="#portfolio" class="btn-secondary">View Our Work →</a>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><span class="check">✔</span> 8+ Years Experience</div>
+      <div class="trust-item"><span class="check">✔</span> 100% Client Satisfaction</div>
+      <div class="trust-item"><span class="check">✔</span> Full-Stack Team</div>
+      <div class="trust-item"><span class="check">✔</span> Fast Delivery</div>
+      <div class="trust-item"><span class="check">✔</span> Upwork Top Rated</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <span class="section-label">About Me</span>
+      <div class="divider"></div>
+      <h2 class="section-title">Building Products That Scale</h2>
+      <p class="section-desc">
+        I'm <strong>Vijay Sharma</strong>, a full-stack developer and freelance team lead with over <strong>8 years of experience</strong> delivering high-quality web and software solutions. I lead a skilled team of developers, designers, and QA specialists to deliver complete end-to-end solutions — from idea to deployment.
+      </p>
+      <p class="section-desc" style="margin-top:1rem;">
+        We specialize in building scalable, performance-driven applications for startups, enterprises, and growing businesses. Whether it's a custom web app, SaaS platform, eCommerce store, or AI-based solution — we handle everything.
+      </p>
+      <div class="about-process">
+        <div class="process-step">
+          <div class="process-dot">1</div>
+          <span class="process-label">Understand</span>
+        </div>
+        <div class="process-line"></div>
+        <div class="process-step">
+          <div class="process-dot">2</div>
+          <span class="process-label">Plan</span>
+        </div>
+        <div class="process-line"></div>
+        <div class="process-step">
+          <div class="process-dot">3</div>
+          <span class="process-label">Build</span>
+        </div>
+        <div class="process-line"></div>
+        <div class="process-step">
+          <div class="process-dot">4</div>
+          <span class="process-label">Deliver</span>
+        </div>
+        <div class="process-line"></div>
+        <div class="process-step">
+          <div class="process-dot">5</div>
+          <span class="process-label">Scale</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-stats reveal" style="transition-delay:0.15s">
+      <div class="stat-card">
+        <div class="stat-number">8+</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Client Satisfaction Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">7+</div>
+        <div class="stat-label">Technologies Mastered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <span class="section-label">What We Do</span>
+    <div class="divider"></div>
+    <h2 class="section-title">Services We Offer</h2>
+    <p class="section-desc">From concept to deployment — we cover the full product lifecycle across modern tech stacks.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <img class="service-icon-img" src="./assets/web-development-card.png" alt="Web development" loading="lazy" decoding="async" />
+      <div class="service-title">Web Development</div>
+      <ul class="service-list">
+        <li>Custom Web Applications</li>
+        <li>Business Websites</li>
+        <li>SaaS Platforms</li>
+        <li>Admin Dashboards</li>
+      </ul>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.05s">
+      <img class="service-icon-img" src="./assets/frontend-development-card.png" alt="Frontend development" loading="lazy" decoding="async" />
+      <div class="service-title">Frontend Development</div>
+      <ul class="service-list">
+        <li>React.js / Next.js</li>
+        <li>Angular</li>
+        <li>Vue.js</li>
+        <li>Tailwind / UI Optimization</li>
+      </ul>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.1s">
+      <img class="service-icon-img" src="./assets/backend-development-card.png" alt="Backend development" loading="lazy" decoding="async" />
+      <div class="service-title">Backend Development</div>
+      <ul class="service-list">
+        <li>Node.js / Express.js</li>
+        <li>REST API Development</li>
+        <li>Authentication Systems</li>
+        <li>Database Architecture</li>
+      </ul>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.15s">
+      <img class="service-icon-img" src="./assets/ecommerce-development-card.png" alt="eCommerce development" loading="lazy" decoding="async" />
+      <div class="service-title">eCommerce Development</div>
+      <ul class="service-list">
+        <li>Shopify Development</li>
+        <li>WooCommerce / WordPress</li>
+        <li>Custom eCommerce Platforms</li>
+        <li>Payment Gateway Integration</li>
+      </ul>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.2s">
+      <img class="service-icon-img" src="./assets/ai-automation-card.png" alt="AI and automation" loading="lazy" decoding="async" />
+      <div class="service-title">AI &amp; Automation</div>
+      <ul class="service-list">
+        <li>AI Chatbots &amp; Agents</li>
+        <li>Workflow Automation Tools</li>
+        <li>OpenAI / LLM Integrations</li>
+        <li>Custom API Integrations</li>
+      </ul>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.25s">
+      <img class="service-icon-img" src="./assets/cms-no-code-card.png" alt="CMS and no-code" loading="lazy" decoding="async" />
+      <div class="service-title">CMS &amp; No-Code</div>
+      <ul class="service-list">
+        <li>WordPress Development</li>
+        <li>Webflow</li>
+        <li>Custom CMS Solutions</li>
+        <li>Theme &amp; Plugin Development</li>
+      </ul>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.3s">
+      <img class="service-icon-img" src="./assets/devops-deployment-card.png" alt="DevOps and deployment" loading="lazy" decoding="async" />
+      <div class="service-title">DevOps &amp; Deployment</div>
+      <ul class="service-list">
+        <li>AWS / Cloud Deployment</li>
+        <li>Docker Setup</li>
+        <li>CI/CD Pipelines</li>
+        <li>Performance Optimization</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <div class="tech-header reveal">
+    <span class="section-label">Technologies</span>
+    <div class="divider"></div>
+    <h2 class="section-title">Technologies We Work With</h2>
+    <p class="section-desc">A battle-tested stack for modern, scalable, production-ready applications.</p>
+  </div>
+  <div class="tech-groups">
+    <div class="tech-group reveal">
+      <div class="tech-group-title">Frontend</div>
+      <div class="tech-tags">
+        <span class="tech-tag">React.js</span>
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">Angular</span>
+        <span class="tech-tag">Vue.js</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">Tailwind CSS</span>
+        <span class="tech-tag">HTML5 / CSS3</span>
+      </div>
+    </div>
+    <div class="tech-group reveal" style="transition-delay:0.05s">
+      <div class="tech-group-title">Backend</div>
+      <div class="tech-tags">
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">Express.js</span>
+        <span class="tech-tag">PHP</span>
+        <span class="tech-tag">Laravel</span>
+        <span class="tech-tag">REST APIs</span>
+        <span class="tech-tag">GraphQL</span>
+      </div>
+    </div>
+    <div class="tech-group reveal" style="transition-delay:0.1s">
+      <div class="tech-group-title">Database</div>
+      <div class="tech-tags">
+        <span class="tech-tag">MongoDB</span>
+        <span class="tech-tag">MySQL</span>
+        <span class="tech-tag">PostgreSQL</span>
+        <span class="tech-tag">Firebase</span>
+        <span class="tech-tag">Redis</span>
+      </div>
+    </div>
+    <div class="tech-group reveal" style="transition-delay:0.15s">
+      <div class="tech-group-title">CMS &amp; eCommerce</div>
+      <div class="tech-tags">
+        <span class="tech-tag">WordPress</span>
+        <span class="tech-tag">Shopify</span>
+        <span class="tech-tag">Webflow</span>
+        <span class="tech-tag">WooCommerce</span>
+      </div>
+    </div>
+    <div class="tech-group reveal" style="transition-delay:0.2s">
+      <div class="tech-group-title">Cloud &amp; DevOps</div>
+      <div class="tech-tags">
+        <span class="tech-tag">AWS</span>
+        <span class="tech-tag">Docker</span>
+        <span class="tech-tag">CI/CD</span>
+        <span class="tech-tag">Git / GitHub</span>
+        <span class="tech-tag">Nginx</span>
+        <span class="tech-tag">Linux</span>
+      </div>
+    </div>
+    <div class="tech-group reveal" style="transition-delay:0.25s">
+      <div class="tech-group-title">AI &amp; Tools</div>
+      <div class="tech-tags">
+        <span class="tech-tag">OpenAI API</span>
+        <span class="tech-tag">LangChain</span>
+        <span class="tech-tag">Stripe</span>
+        <span class="tech-tag">Razorpay</span>
+        <span class="tech-tag">Twilio</span>
+        <span class="tech-tag">SendGrid</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="why-grid">
+    <div class="reveal">
+      <span class="section-label">Why Us</span>
+      <div class="divider"></div>
+      <h2 class="section-title">Why Clients Choose Us</h2>
+      <ul class="why-list">
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <div class="why-text">Dedicated Freelance Team</div>
+            <div class="why-sub">Not just one developer — a full team of specialists</div>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <div class="why-text">Fast &amp; Reliable Delivery</div>
+            <div class="why-sub">Agile sprints, clear milestones, on-time delivery</div>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <div class="why-text">Clean &amp; Scalable Code</div>
+            <div class="why-sub">Production-grade architecture that grows with you</div>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <div class="why-text">Transparent Communication</div>
+            <div class="why-sub">Daily updates, open channels, no surprises</div>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <div class="why-text">Long-Term Support &amp; Maintenance</div>
+            <div class="why-sub">We're partners, not just project vendors</div>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-check">✓</div>
+          <div>
+            <div class="why-text">Cost-Effective Solutions</div>
+            <div class="why-sub">Agency-quality work at freelance rates</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-cta-box reveal" style="transition-delay:0.15s">
+      <div class="quote">We don't just build projects — we build <em>long-term partnerships</em> that help your business grow.</div>
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:2rem;line-height:1.75;">Every project is delivered with a commitment to excellence, scalability, and your long-term success. Our clients come back because we treat their product like our own.</p>
+      <a href="#contact" class="btn-primary" style="display:inline-flex;justify-content:center;">Start Your Project</a>
+      <div style="margin-top:1.5rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-family:var(--heading);font-size:1.6rem;font-weight:800;color:var(--accent);">⭐ 5.0</div>
+          <div style="font-size:0.75rem;color:var(--muted);">Upwork Rating</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--heading);font-size:1.6rem;font-weight:800;color:var(--accent);">Top Rated</div>
+          <div style="font-size:0.75rem;color:var(--muted);">Upwork Badge</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--heading);font-size:1.6rem;font-weight:800;color:var(--accent);">8+ Yrs</div>
+          <div style="font-size:0.75rem;color:var(--muted);">Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header reveal">
+    <span class="section-label">Our Work</span>
+    <div class="divider"></div>
+    <h2 class="section-title">Projects We've Built</h2>
+    <p class="section-desc">Delivered across industries — startups, SaaS, eCommerce, and enterprise. Each built to scale.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="project-card reveal">
+      <div class="project-visual pv-1">
+        <img src="./assets/saas-dashboard-platform.png" alt="SaaS dashboard platform" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-body">
+        <div class="project-name">SaaS Dashboard Platform</div>
+        <div class="project-desc">A multi-tenant SaaS platform with real-time analytics, role-based access control, and subscription billing.</div>
+        <div class="project-tags">
+          <span class="project-tag">React</span>
+          <span class="project-tag">Node.js</span>
+          <span class="project-tag">MongoDB</span>
+          <span class="project-tag">Stripe</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:0.05s">
+      <div class="project-visual pv-2">
+        <img src="./assets/ecommerce-store-payments.png" alt="eCommerce store with payments" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-body">
+        <div class="project-name">eCommerce Store with Payments</div>
+        <div class="project-desc">Full-featured eCommerce store built on Shopify with custom theme, Razorpay integration, and inventory automation.</div>
+        <div class="project-tags">
+          <span class="project-tag">Shopify</span>
+          <span class="project-tag">Liquid</span>
+          <span class="project-tag">Razorpay</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:0.1s">
+      <div class="project-visual pv-3">
+        <img src="./assets/ai-chatbot-system.png" alt="AI chatbot system" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-body">
+        <div class="project-name">AI Chatbot System</div>
+        <div class="project-desc">Custom AI assistant powered by OpenAI with conversation memory, lead capture, and CRM sync for a B2B SaaS company.</div>
+        <div class="project-tags">
+          <span class="project-tag">OpenAI</span>
+          <span class="project-tag">Next.js</span>
+          <span class="project-tag">Express</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:0.15s">
+      <div class="project-visual pv-4">
+        <img src="./assets/custom-crm-system.png" alt="Custom CRM system" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-body">
+        <div class="project-name">Custom CRM System</div>
+        <div class="project-desc">A bespoke CRM platform with pipeline management, email automation, and reporting dashboards for a sales team.</div>
+        <div class="project-tags">
+          <span class="project-tag">Angular</span>
+          <span class="project-tag">Node.js</span>
+          <span class="project-tag">PostgreSQL</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:0.2s">
+      <div class="project-visual pv-5">
+        <img src="./assets/business-website-seo.png" alt="Business website with SEO" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-body">
+        <div class="project-name">Business Website with SEO</div>
+        <div class="project-desc">High-performance WordPress website with technical SEO, Core Web Vitals optimization, and content management system.</div>
+        <div class="project-tags">
+          <span class="project-tag">WordPress</span>
+          <span class="project-tag">SEO</span>
+          <span class="project-tag">Elementor</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-header reveal">
+    <span class="section-label">Client Feedback</span>
+    <div class="divider"></div>
+    <h2 class="section-title">What Clients Say</h2>
+    <p class="section-desc">Real feedback from real clients. We let the work speak for itself.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Highly skilled developer with great communication. Delivered exactly what we needed — on time, on budget, and with exceptional quality."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar av1">RK</div>
+        <div>
+          <div class="author-name">Rahul K.</div>
+          <div class="author-role">Startup Founder, SaaS</div>
+        </div>
+      </div>
+      <div class="upwork-badge">✓ Verified via Upwork</div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.1s">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Fast, reliable, and very professional. Vijay's team handled everything end-to-end. We will definitely work together again on our next project."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar av2">SP</div>
+        <div>
+          <div class="author-name">Sarah P.</div>
+          <div class="author-role">eCommerce Owner</div>
+        </div>
+      </div>
+      <div class="upwork-badge">✓ Verified via Upwork</div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.2s">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Great experience from start to finish. They handled everything from frontend to backend perfectly. Communication was outstanding throughout."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar av3">AM</div>
+        <div>
+          <div class="author-name">Amit M.</div>
+          <div class="author-role">Product Manager</div>
+        </div>
+      </div>
+      <div class="upwork-badge">✓ Verified via Upwork</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta">
+  <div class="cta-inner reveal">
+    <h2 class="cta-title">Ready to Start Your <span>Next Project?</span></h2>
+    <p class="cta-desc">Whether you're a startup with an idea or an established business needing a tech upgrade — we can build it, scale it, and support it.</p>
+    <div class="cta-btns">
+      <a href="#contact" class="btn-primary">Start Project Now</a>
+      <a href="https://wa.me/918527594730?text=Hi%20Vijay%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener" class="btn-primary btn-whatsapp">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <span class="section-label">Get In Touch</span>
+      <div class="divider"></div>
+      <h2 class="section-title">Let's Work Together</h2>
+      <p class="section-desc" style="margin-bottom:2.5rem;">Have a project in mind? Let's discuss how we can help you build it, launch it, and scale it.</p>
+
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone / WhatsApp</div>
+          <div class="contact-value"><a href="tel:+918527594730">+91 8527594730</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:vijaysharma6918h@gmail.com">vijaysharma6918h@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">India — Available Worldwide</div>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.upwork.com/freelancers/~019b3aee9c5d781d36" target="_blank" rel="noopener" class="social-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.546-1.405 0-2.543-1.14-2.545-2.546V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/></svg>
+          Upwork Profile
+        </a>
+        <a href="https://wa.me/918527594730" target="_blank" rel="noopener" class="social-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form reveal" style="transition-delay:0.15s">
+      <h3 style="font-family:var(--heading);font-size:1.15rem;font-weight:700;margin-bottom:1.75rem;">Send a Message</h3>
+      <div id="form-success">✅ Message sent! I'll get back to you within 24 hours.</div>
+      <div id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" id="fname" placeholder="John Doe" />
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" id="femail" placeholder="john@example.com" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Project Type</label>
+          <select id="ftype">
+            <option value="">Select a service…</option>
+            <option>Web Application / SaaS</option>
+            <option>eCommerce Store</option>
+            <option>AI / Automation Solution</option>
+            <option>WordPress / Webflow Site</option>
+            <option>Mobile App</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Budget Range</label>
+          <select id="fbudget">
+            <option value="">Select budget…</option>
+            <option>Under $500</option>
+            <option>$500 – $2,000</option>
+            <option>$2,000 – $5,000</option>
+            <option>$5,000+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell me about your project *</label>
+          <textarea id="fmsg" placeholder="Describe your idea, requirements, or questions…"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Vijay<span>.</span>dev</div>
+      <div class="footer-tagline">Full-Stack Developer &amp; Freelance Team — India</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#services">Web Development</a></li>
+      <li><a href="#services">AI Solutions</a></li>
+      <li><a href="#services">eCommerce</a></li>
+      <li><a href="#services">Freelance Team</a></li>
+      <li><a href="https://www.upwork.com/freelancers/~019b3aee9c5d781d36" target="_blank" rel="noopener">Upwork</a></li>
+    </ul>
+    <div class="footer-copy">
+      © 2026 Vijay Sharma. All Rights Reserved.<br>
+      <span style="color:var(--accent2);">Full-Stack Development · AI Solutions · Freelance Team</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  function closeMobile() { mobileMenu.classList.remove('open'); }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    const msg = document.getElementById('fmsg').value.trim();
+    if (!name || !email || !msg) { alert('Please fill in your name, email, and message.'); return; }
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+    // In production, replace with actual form submission (Formspree, EmailJS, etc.)
+    console.log('Form data:', { name, email, msg });
+  }
+
+  // Smooth nav highlight
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 80 ? 'rgba(8,11,18,0.97)' : 'rgba(8,11,18,0.85)';
+  });
+</script>
+</body>
+</html>
