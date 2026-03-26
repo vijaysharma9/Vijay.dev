@@ -948,8 +948,6 @@
       margin-bottom: 0.4rem;
     }
 
-    .footer-logo span { color: var(--accent); }
-
     .footer-tagline { font-size: 0.82rem; color: var(--muted); }
 
     .footer-links {
@@ -1002,6 +1000,7 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
+      .nav-logo { font-size: 1rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .about-grid,
@@ -1014,6 +1013,7 @@
     }
 
     @media (max-width: 480px) {
+      .nav-logo { font-size: 0.9rem; }
       .about-stats { grid-template-columns: 1fr; }
       .hero-btns { flex-direction: column; }
       .hero-btns a, .hero-btns button { width: 100%; justify-content: center; }
