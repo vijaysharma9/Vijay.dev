@@ -58,14 +58,20 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      padding: 0 1.5rem;
       height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       background: rgba(8,11,18,0.85);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .nav-logo {
@@ -104,6 +110,7 @@
     }
 
     .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--text); }
 
     .nav-cta {
       background: var(--accent);
@@ -148,7 +155,9 @@
     }
 
     .hero-inner {
-      max-width: 900px;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
       position: relative;
       z-index: 1;
     }
@@ -1063,6 +1072,7 @@
     .mobile-menu.open { display: flex; }
     .mobile-menu a { color: var(--text); text-decoration: none; font-size: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-weight: 500; }
     .mobile-menu a:last-child { border: none; }
+    .mobile-menu a.active { color: var(--accent2); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
@@ -1091,6 +1101,7 @@
 
 <!-- NAV -->
 <nav>
+  <div class="nav-inner">
   <a href="#hero" class="nav-logo"><span class="brand-word">HireDeveloperShop</span><span class="brand-com">.com</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -1103,6 +1114,7 @@
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
+  </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -1835,6 +1847,27 @@
     const nav = document.querySelector('nav');
     nav.style.background = window.scrollY > 80 ? 'rgba(8,11,18,0.97)' : 'rgba(8,11,18,0.85)';
   });
+
+  // Active nav link on scroll (desktop + mobile)
+  const spyLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-cta), .mobile-menu a[href^="#"]'));
+  const spySections = spyLinks
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  function setActiveNavLink() {
+    const scrollY = window.scrollY + 120;
+    let currentId = '';
+    for (const section of spySections) {
+      if (section.offsetTop <= scrollY) currentId = section.id;
+    }
+    spyLinks.forEach((link) => {
+      const isActive = currentId && link.getAttribute('href') === `#${currentId}`;
+      link.classList.toggle('active', isActive);
+    });
+  }
+
+  window.addEventListener('scroll', setActiveNavLink);
+  window.addEventListener('load', setActiveNavLink);
 </script>
 </body>
 </html>
