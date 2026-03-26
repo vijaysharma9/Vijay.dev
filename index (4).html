@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vijay Sharma — Full-Stack Developer & Freelance Team | React, Next.js, Node.js, AI Solutions</title>
-  <meta name="description" content="Vijay Sharma is a full-stack developer and freelance team lead with 8+ years of experience building scalable web apps, SaaS platforms, AI solutions, and eCommerce stores using React, Next.js, Angular, Node.js, Shopify, and WordPress." />
-  <meta name="keywords" content="full stack developer, freelance developer India, React developer, Next.js developer, Node.js developer, Angular developer, Shopify developer, WordPress developer, AI solutions, SaaS development, hire developer, web development team" />
-  <meta name="author" content="Vijay Sharma" />
-  <meta property="og:title" content="Vijay Sharma — Full-Stack Developer & Freelance Team" />
-  <meta property="og:description" content="8+ years building scalable web & AI solutions. React, Next.js, Node.js, Shopify, and more." />
+  <title>HireDeveloperShop – Affordable IT Consultancy & Full-Stack Development Services</title>
+  <meta name="description" content="Expert IT consultancy and full-stack development at budget-friendly rates. We build scalable web apps, SaaS platforms, eCommerce stores, and AI-powered solutions for startups and businesses worldwide." />
+  <meta name="keywords" content="IT consultancy, full-stack development, affordable web development, SaaS development, React developer, Node.js developer, eCommerce development, AI integration, freelance development team, hire developers" />
+  <meta name="author" content="HireDeveloperShop.com" />
+  <meta property="og:title" content="HireDeveloperShop – Affordable IT Consultancy & Full-Stack Development Services" />
+  <meta property="og:description" content="Affordable IT consultancy and full-stack development for startups and growing businesses worldwide." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -770,6 +770,72 @@
       margin-top: 0.75rem;
     }
 
+    /* ─── PRICING ─── */
+    #pricing { background: var(--surface); }
+    .pricing-header { max-width: 1200px; margin: 0 auto 3rem; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: rgba(59,130,246,0.5);
+      box-shadow: 0 12px 40px rgba(59,130,246,0.12);
+    }
+    .popular-badge {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+    }
+    .pricing-title {
+      font-family: var(--heading);
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .price {
+      font-family: var(--heading);
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .price-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 1.25rem; }
+    .pricing-features { list-style: none; margin-bottom: 1.5rem; display: grid; gap: 0.55rem; }
+    .pricing-features li {
+      color: var(--muted);
+      font-size: 0.86rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .pricing-features li::before {
+      content: "✓";
+      color: #22c55e;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
     /* ─── CTA BAND ─── */
     #cta {
       background: linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(139,92,246,0.08) 50%, rgba(6,182,212,0.06) 100%);
@@ -1031,6 +1097,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#tech">Stack</a></li>
     <li><a href="#portfolio">Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
     <li><a href="#contact" class="nav-cta">Hire Me</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -1043,6 +1110,7 @@
   <a href="#services" onclick="closeMobile()">Services</a>
   <a href="#tech" onclick="closeMobile()">Tech Stack</a>
   <a href="#portfolio" onclick="closeMobile()">Work</a>
+  <a href="#pricing" onclick="closeMobile()">Pricing</a>
   <a href="#testimonials" onclick="closeMobile()">Testimonials</a>
   <a href="#contact" onclick="closeMobile()">Contact / Hire Me</a>
 </div>
@@ -1052,14 +1120,14 @@
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
   <div class="hero-inner">
-    <div class="hero-badge">Available for Projects</div>
+    <div class="hero-badge">Available for New Projects</div>
     <h1 class="hero-title">
-      Full-Stack Developer<br>
-      <span class="line2">&amp; Freelance Team</span><br>
-      <span class="line3">Delivering Scalable Solutions</span>
+      Affordable IT Consultancy &amp;<br>
+      <span class="line2">Full-Stack Development</span><br>
+      <span class="line3">for Growing Businesses</span>
     </h1>
     <p class="hero-sub">
-      Hi, I'm <strong>Vijay Sharma</strong> — a full-stack developer and freelance team lead. We help startups and businesses build powerful, fast, and scalable applications using React, Next.js, Angular, Node.js, AI integrations, and more.
+      We help startups and enterprises build powerful, scalable digital products from custom web apps to AI integrations at budget-friendly consultancy rates. No bloated agency fees.
     </p>
     <div class="hero-btns">
       <a href="#contact" class="btn-primary">Hire Me</a>
@@ -1070,11 +1138,10 @@
       <a href="#portfolio" class="btn-secondary">View Our Work →</a>
     </div>
     <div class="trust-row">
-      <div class="trust-item"><span class="check">✔</span> 8+ Years Experience</div>
-      <div class="trust-item"><span class="check">✔</span> 100% Client Satisfaction</div>
-      <div class="trust-item"><span class="check">✔</span> Full-Stack Team</div>
-      <div class="trust-item"><span class="check">✔</span> Fast Delivery</div>
-      <div class="trust-item"><span class="check">✔</span> Upwork Top Rated</div>
+      <div class="trust-item"><span class="check">✔</span> 8+ Years of Proven Expertise</div>
+      <div class="trust-item"><span class="check">✔</span> 100% Client Satisfaction Rate</div>
+      <div class="trust-item"><span class="check">✔</span> Upwork Top Rated Agency</div>
+      <div class="trust-item"><span class="check">✔</span> 50+ Projects Delivered Globally</div>
     </div>
   </div>
 </section>
@@ -1083,14 +1150,14 @@
 <section id="about">
   <div class="about-grid">
     <div class="reveal">
-      <span class="section-label">About Me</span>
+      <span class="section-label">About Us</span>
       <div class="divider"></div>
-      <h2 class="section-title">Building Products That Scale</h2>
+      <h2 class="section-title">IT Consultancy That Delivers — Not Just Quotes</h2>
       <p class="section-desc">
-        I'm <strong>Vijay Sharma</strong>, a full-stack developer and freelance team lead with over <strong>8 years of experience</strong> delivering high-quality web and software solutions. I lead a skilled team of developers, designers, and QA specialists to deliver complete end-to-end solutions — from idea to deployment.
+        We are a <strong>full-stack IT consultancy and development team</strong> with over <strong>8 years of experience</strong> building high-performance web applications, SaaS platforms, and AI-driven solutions for businesses worldwide.
       </p>
       <p class="section-desc" style="margin-top:1rem;">
-        We specialize in building scalable, performance-driven applications for startups, enterprises, and growing businesses. Whether it's a custom web app, SaaS platform, eCommerce store, or AI-based solution — we handle everything.
+        Unlike traditional agencies with inflated overheads, we operate as a <strong>lean, agile team of developers, designers, and QA specialists</strong> giving you agency-quality output at freelance-competitive rates.
       </p>
       <div class="about-process">
         <div class="process-step">
@@ -1145,8 +1212,8 @@
   <div class="services-header reveal">
     <span class="section-label">What We Do</span>
     <div class="divider"></div>
-    <h2 class="section-title">Services We Offer</h2>
-    <p class="section-desc">From concept to deployment — we cover the full product lifecycle across modern tech stacks.</p>
+    <h2 class="section-title">End-to-End IT Services Under One Roof</h2>
+    <p class="section-desc">From concept to deployment, we cover the complete product lifecycle so you never need to juggle multiple vendors.</p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal">
@@ -1217,6 +1284,26 @@
         <li>Docker Setup</li>
         <li>CI/CD Pipelines</li>
         <li>Performance Optimization</li>
+      </ul>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.35s">
+      <img class="service-icon-img" src="./assets/it-consultancy-card.png" alt="IT consultancy" loading="lazy" decoding="async" />
+      <div class="service-title">IT Consultancy</div>
+      <ul class="service-list">
+        <li>Architecture Design</li>
+        <li>Tech Stack Advice</li>
+        <li>Code Audits</li>
+        <li>Roadmap Planning</li>
+      </ul>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.4s">
+      <img class="service-icon-img" src="./assets/maintenance-support-card.png" alt="Maintenance and support" loading="lazy" decoding="async" />
+      <div class="service-title">Maintenance &amp; Support</div>
+      <ul class="service-list">
+        <li>Bug Fixes</li>
+        <li>Security Patches</li>
+        <li>Feature Updates</li>
+        <li>Ongoing Technical Support</li>
       </ul>
     </div>
   </div>
@@ -1452,6 +1539,62 @@
           <span class="project-tag">Elementor</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-header reveal">
+    <span class="section-label">Pricing</span>
+    <div class="divider"></div>
+    <h2 class="section-title">Transparent, Budget-Friendly IT Consultancy Packages</h2>
+    <p class="section-desc">No hidden fees. No agency markups. Just honest pricing for high-quality development and consultancy work.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="pricing-title">Starter</div>
+      <div class="price">$499</div>
+      <div class="price-sub">Starting from / project</div>
+      <ul class="pricing-features">
+        <li>Single-page or landing page</li>
+        <li>Mobile responsive design</li>
+        <li>Basic SEO setup</li>
+        <li>Contact form integration</li>
+        <li>1 revision round</li>
+        <li>5-day delivery</li>
+      </ul>
+      <a href="#contact" class="btn-secondary" style="width:100%;justify-content:center;">Get Started</a>
+    </div>
+    <div class="pricing-card featured reveal" style="transition-delay:0.08s">
+      <div class="popular-badge">Most Popular</div>
+      <div class="pricing-title">Growth</div>
+      <div class="price">$1,999</div>
+      <div class="price-sub">Starting from / project</div>
+      <ul class="pricing-features">
+        <li>Full multi-page web application</li>
+        <li>Custom backend and API development</li>
+        <li>Database design and integration</li>
+        <li>Payment gateway integration</li>
+        <li>Admin dashboard</li>
+        <li>3 revision rounds</li>
+        <li>14-day delivery</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="width:100%;justify-content:center;">Start Project</a>
+    </div>
+    <div class="pricing-card reveal" style="transition-delay:0.16s">
+      <div class="pricing-title">Enterprise</div>
+      <div class="price">Custom</div>
+      <div class="price-sub">Tailored to your needs</div>
+      <ul class="pricing-features">
+        <li>Complex SaaS or enterprise apps</li>
+        <li>AI and automation integrations</li>
+        <li>Dedicated development team</li>
+        <li>Full DevOps and cloud setup</li>
+        <li>Priority support and SLA</li>
+        <li>IT consultancy included</li>
+      </ul>
+      <a href="#contact" class="btn-secondary" style="width:100%;justify-content:center;">Request a Quote</a>
     </div>
   </div>
 </section>
