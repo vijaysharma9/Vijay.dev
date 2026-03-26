@@ -79,6 +79,16 @@
 
     .nav-logo span { color: var(--accent); }
 
+    .brand-word {
+      background: linear-gradient(90deg, #3b82f6, #06b6d4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .brand-com { color: #ffffff; }
+
     .nav-links {
       display: flex;
       gap: 2rem;
@@ -1017,7 +1027,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">HireDeveloperShop<span>.</span>com</a>
+  <a href="#hero" class="nav-logo"><span class="brand-word">HireDeveloperShop</span><span class="brand-com">.com</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
@@ -1604,7 +1614,7 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="footer-logo">HireDeveloperShop<span>.</span>com</div>
+      <div class="footer-logo"><span class="brand-word">HireDeveloperShop</span><span class="brand-com">.com</span></div>
       <div class="footer-tagline">Full-Stack Developer &amp; Freelance Team — Worldwide</div>
     </div>
     <ul class="footer-links">
