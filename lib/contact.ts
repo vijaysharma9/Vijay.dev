@@ -121,11 +121,17 @@ async function sendViaFormSubmit({
   name: string;
   text: string;
 }) {
+  const siteUrl = (
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hiredevelopershop.com'
+  ).trim();
+
   const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json'
+      Accept: 'application/json',
+      Origin: siteUrl,
+      Referer: `${siteUrl.replace(/\/$/, '')}/`
     },
     body: JSON.stringify({
       name,
@@ -136,11 +142,16 @@ async function sendViaFormSubmit({
     })
   });
 
-  if (!res.ok) {
-    const data = (await res.json().catch(() => ({}))) as
-      | { message?: string; error?: string }
-      | Record<string, unknown>;
+  const data = (await res.json().catch(() => ({}))) as
+    | { success?: string; message?: string; error?: string }
+    | Record<string, unknown>;
 
+  const success =
+    typeof (data as any)?.success === 'string'
+      ? (data as any).success.toLowerCase() === 'true'
+      : false;
+
+  if (!res.ok || !success) {
     const msg =
       typeof (data as any)?.message === 'string'
         ? (data as any).message
