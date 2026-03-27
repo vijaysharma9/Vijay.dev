@@ -32,7 +32,9 @@ export async function sendContactMessage(input: ContactSenderInput): Promise<{
   const resendFrom = process.env.RESEND_FROM_EMAIL;
   const resendTo = process.env.RESEND_TO_EMAIL;
 
-  const formSubmitTo = process.env.FORM_SUBMIT_TO_EMAIL;
+  // Safety fallback so production contact works even if env sync is delayed.
+  const formSubmitTo =
+    process.env.FORM_SUBMIT_TO_EMAIL || 'vijaysharma6918h@gmail.com';
 
   const canResend = Boolean(resendApiKey && resendFrom && resendTo);
   const canFormSubmit = Boolean(formSubmitTo);
