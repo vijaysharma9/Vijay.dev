@@ -26,7 +26,7 @@ export async function sendContactMessage(input: ContactSenderInput): Promise<{
 
   const subject = 'New message from HireDeveloperShop.com contact form';
 
-  const preferred = process.env.CONTACT_FORM_PROVIDER?.toLowerCase();
+  const preferred = process.env.CONTACT_FORM_PROVIDER?.trim().toLowerCase();
 
   const resendApiKey = process.env.RESEND_API_KEY;
   const resendFrom = process.env.RESEND_FROM_EMAIL;
@@ -34,7 +34,7 @@ export async function sendContactMessage(input: ContactSenderInput): Promise<{
 
   // Safety fallback so production contact works even if env sync is delayed.
   const formSubmitTo =
-    process.env.FORM_SUBMIT_TO_EMAIL || 'vijaysharma6918h@gmail.com';
+    process.env.FORM_SUBMIT_TO_EMAIL?.trim() || 'vijaysharma6918h@gmail.com';
 
   const canResend = Boolean(resendApiKey && resendFrom && resendTo);
   const canFormSubmit = Boolean(formSubmitTo);
