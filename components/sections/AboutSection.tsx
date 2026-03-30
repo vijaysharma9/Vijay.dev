@@ -11,8 +11,8 @@ export default function AboutSection() {
 
   const stats = [
     { value: '8+', label: 'Years of Experience' },
-    { value: '100%', label: 'Client Satisfaction Rate' },
     { value: '50+', label: 'Projects Delivered' },
+    { value: '100%', label: 'Client Satisfaction' },
     { value: '7+', label: 'Technologies Mastered' }
   ];
 
@@ -54,14 +54,14 @@ export default function AboutSection() {
           </div>
         </div>
 
-        <div className="about-stats reveal">
+        <ul className="about-stats reveal" aria-label="Key metrics">
           {stats.map((s) => (
-            <div key={s.label} className="stat-card">
+            <li key={s.label} className="stat-card">
               <div className="stat-number">{s.value}</div>
               <div className="stat-label">{s.label}</div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

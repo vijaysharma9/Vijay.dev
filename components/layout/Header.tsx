@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { NAV_ITEMS, CONTACT_NAV_ID } from '@/constants/navigation';
 import { cn } from '@/utils/cn';
@@ -11,7 +12,7 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 import MobileMenu from '@/components/layout/MobileMenu';
 
 const MOBILE_ITEMS = [
-  { id: 'about', label: 'About' },
+  { id: 'about', label: 'About', href: '/about' },
   { id: 'services', label: 'Services' },
   { id: 'tech', label: 'Tech Stack' },
   { id: 'portfolio', label: 'Work' },
@@ -21,6 +22,8 @@ const MOBILE_ITEMS = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+
   const sectionIds = useMemo(
     () => [...NAV_ITEMS.map((i) => i.id), 'testimonials', CONTACT_NAV_ID],
     []
@@ -52,12 +55,16 @@ export default function Header() {
 
         <ul className="nav-links">
           {NAV_ITEMS.map((item) => {
-            const isActive = activeId === item.id;
+            const href = item.id === 'about' ? '/about' : `/#${item.id}`;
+            const isActive =
+              item.id === 'about'
+                ? pathname === '/about' || (pathname === '/' && activeId === 'about')
+                : pathname === '/' && activeId === item.id;
 
             return (
               <li key={item.id}>
                 <Link
-                  href={`/#${item.id}`}
+                  href={href}
                   className={cn(isActive && 'active')}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -78,10 +85,7 @@ export default function Header() {
           </li>
         </ul>
 
-        <MobileMenu
-          items={MOBILE_ITEMS}
-          activeId={activeId}
-        />
+        <MobileMenu items={MOBILE_ITEMS} activeId={activeId} pathname={pathname} />
       </div>
     </nav>
   );

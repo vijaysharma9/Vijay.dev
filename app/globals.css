@@ -218,15 +218,18 @@ nav {
   line-height: 1.07;
   letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
+  color: var(--text);
   animation: fadeUp 0.6s 0.1s ease both;
 }
 
 .hero-title .line2 { color: var(--accent); }
 .hero-title .line3 {
+  display: inline-block;
   background: linear-gradient(135deg, var(--accent2), var(--accent3));
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-sub {
@@ -411,6 +414,9 @@ section { padding: 100px clamp(1.5rem, 5vw, 4rem) 100px; position: relative; }
 }
 
 .about-stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
@@ -428,18 +434,30 @@ section { padding: 100px clamp(1.5rem, 5vw, 4rem) 100px; position: relative; }
 
 .stat-number {
   font-family: var(--heading);
-  font-size: 2.2rem;
+  font-size: clamp(1.85rem, 2.8vw, 2.4rem);
   font-weight: 800;
-  color: var(--accent);
   letter-spacing: -0.03em;
   line-height: 1;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
+  /* Match /about hero metrics: white → sky (reliable across browsers) */
+  background: linear-gradient(to bottom, #ffffff 25%, #38bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .stat-label {
-  font-size: 0.82rem;
+  font-size: 0.7rem;
   color: var(--muted);
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+}
+
+@media (min-width: 640px) {
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.12em; }
 }
 
 /* ─── SERVICES ─── */
@@ -803,22 +821,77 @@ section { padding: 100px clamp(1.5rem, 5vw, 4rem) 100px; position: relative; }
 /* ─── PRICING ─── */
 #pricing { background: var(--surface); }
 
-.pricing-header { max-width: 1200px; margin: 0 auto 3rem; }
+@media (max-width: 639px) {
+  #pricing {
+    padding-top: clamp(3.25rem, 10vw, 5rem);
+    padding-bottom: clamp(3.25rem, 10vw, 5rem);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  #pricing {
+    padding-top: clamp(4rem, 8vw, 6.25rem);
+    padding-bottom: clamp(4rem, 8vw, 6.25rem);
+  }
+}
+
+.pricing-header {
+  max-width: 1200px;
+  margin: 0 auto clamp(1.75rem, 5vw, 3rem);
+}
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 3vw, 1.5rem);
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+}
+
+/* Tablet: two columns; third card centered below */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .pricing-grid > *:nth-child(3) {
+    grid-column: 1 / -1;
+    max-width: min(100%, 420px);
+    justify-self: center;
+    width: 100%;
+  }
+}
+
+/* Desktop: three columns */
+@media (min-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .pricing-grid > *:nth-child(3) {
+    grid-column: auto;
+    max-width: none;
+    width: auto;
+  }
 }
 
 .pricing-card {
   background: var(--surface2);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 2rem;
+  padding: clamp(1.35rem, 4vw, 2rem);
   position: relative;
+  min-width: 0;
+}
+
+.pricing-card .btn-primary,
+.pricing-card .btn-secondary {
+  width: 100%;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .pricing-card.featured {
@@ -852,10 +925,12 @@ section { padding: 100px clamp(1.5rem, 5vw, 4rem) 100px; position: relative; }
 
 .price {
   font-family: var(--heading);
-  font-size: 2.1rem;
+  font-size: clamp(1.65rem, 5vw, 2.1rem);
   font-weight: 800;
   color: var(--text);
   margin-bottom: 0.25rem;
+  line-height: 1.15;
+  word-break: break-word;
 }
 
 .price-sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 1.25rem; }

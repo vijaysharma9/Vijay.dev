@@ -42,3 +42,27 @@ export function buildServicesJsonLd(services: Service[]) {
   }));
 }
 
+/** JSON-LD Person for the /about page (matches @graph pattern used on the home page). */
+export function buildPersonJsonLd() {
+  const aboutUrl = new URL('/about', baseUrl).toString();
+
+  return {
+    '@type': 'Person',
+    '@id': `${aboutUrl}#person`,
+    name: 'Vijay Sharma',
+    url: aboutUrl,
+    jobTitle: 'Full-Stack Developer & IT Consultant',
+    description:
+      'Full-stack developer and IT consultant with 8+ years of experience building scalable web applications, SaaS platforms, and AI solutions.',
+    sameAs: [
+      'https://www.upwork.com/freelancers/~019b3aee9c5d781d36',
+      'https://github.com/vijaysharma9/Vijay.dev'
+    ],
+    worksFor: {
+      '@type': 'Organization',
+      name: ORGANIZATION_NAME,
+      url: baseUrl.toString()
+    }
+  } as const;
+}
+

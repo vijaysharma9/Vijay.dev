@@ -8,14 +8,17 @@ import { useMobileMenu } from '@/hooks/useMobileMenu';
 type MobileMenuItem = {
   id: string;
   label: string;
+  href?: string;
 };
 
 export default function MobileMenu({
   items,
-  activeId
+  activeId,
+  pathname
 }: {
   items: MobileMenuItem[];
   activeId: string | null;
+  pathname: string;
 }) {
   const { open, toggle, close } = useMobileMenu();
 
@@ -41,12 +44,16 @@ export default function MobileMenu({
         aria-hidden={!open}
       >
         {items.map((item) => {
-          const isActive = activeId === item.id;
+          const isActive =
+            item.id === 'about'
+              ? pathname === '/about' || (pathname === '/' && activeId === 'about')
+              : pathname === '/' && activeId === item.id;
+          const href = item.href ?? `/#${item.id}`;
 
           return (
             <Link
               key={item.id}
-              href={`/#${item.id}`}
+              href={href}
               className={cn(isActive && 'active')}
               aria-current={isActive ? 'page' : undefined}
               onClick={() => close()}
