@@ -31,10 +31,13 @@ const SECURE_HEADERS = {
 
 export async function POST(req: Request) {
   if (req.method !== 'POST') {
-    return jsonResponse({
-      ok: false,
-      error: { code: 'METHOD_NOT_ALLOWED', message: 'Only POST is allowed.' }
-    }, 405);
+    return jsonResponse(
+      {
+        success: false,
+        error: 'Only POST is allowed.'
+      },
+      405
+    );
   }
 
   const ip =
@@ -45,11 +48,8 @@ export async function POST(req: Request) {
   if (isRateLimited(ip)) {
     return Response.json(
       {
-        ok: false,
-        error: {
-          code: 'RATE_LIMITED',
-          message: 'Too many requests — please wait a minute before trying again.'
-        }
+        success: false,
+        error: 'Too many requests — please wait a minute before trying again.'
       },
       {
         status: 429,
@@ -67,12 +67,13 @@ export async function POST(req: Request) {
   if (!parsed.success) {
     const message = parsed.error.issues[0]?.message ?? 'Invalid request.';
 
-    const response: ContactApiResponse = {
-      ok: false,
-      error: { code: 'VALIDATION_ERROR', message }
-    };
-
-    return jsonResponse(response, 400);
+    return jsonResponse(
+      {
+        success: false,
+        error: message
+      },
+      400
+    );
   }
 
   try {
@@ -86,32 +87,44 @@ export async function POST(req: Request) {
       budgetRange: budgetRange ?? undefined
     });
 
-    const response: ContactApiResponse = {
-      ok: true,
-      message: '✅ Message sent! I will get back to you within 24 hours.'
-    };
-
-    return jsonResponse(response, 200);
-  } catch (err) {
-    console.error(
-      '[/api/contact] sendContactMessage failed:',
-      err instanceof Error ? err.message : err
+    return jsonResponse(
+      {
+        success: true,
+        message: '✅ Message sent! I will get back to you within 24 hours.'
+      },
+      200
     );
+  } catch (err) {
+    const reason = err instanceof Error ? err.message : 'Unknown error';
+    console.error('[/api/contact] sendContactMessage failed:', reason);
 
-    const message =
+    const errorMessage =
       process.env.NODE_ENV === 'development'
-        ? err instanceof Error
-          ? err.message
-          : 'Unknown error'
-        : 'FormSubmit request failed';
+        ? reason
+        : userFacingSendError(reason);
 
-    const response: ContactApiResponse = {
-      ok: false,
-      error: { code: 'CONTACT_SEND_FAILED', message }
-    };
-
-    return jsonResponse(response, 500);
+    return jsonResponse(
+      {
+        success: false,
+        error: errorMessage
+      },
+      500
+    );
   }
+}
+
+function userFacingSendError(reason: string): string {
+  if (
+    reason.includes('Resend is not configured') ||
+    reason.includes('missing') ||
+    reason.toLowerCase().includes('resend')
+  ) {
+    return 'Email could not be sent. Please try again later or contact us directly.';
+  }
+  if (reason.includes('FormSubmit') || reason.includes('timed out')) {
+    return 'Email could not be sent. Please try again later or contact us directly.';
+  }
+  return 'Email could not be sent. Please try again later or contact us directly.';
 }
 
 function jsonResponse(payload: ContactApiResponse, status = 200) {

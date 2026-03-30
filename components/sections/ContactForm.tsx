@@ -88,7 +88,7 @@ export default function ContactForm() {
         return;
       }
 
-      if (!res.ok || !data.ok) {
+      if (!res.ok || !data.success) {
         setServerStatus({
           type: 'error',
           message: contactSubmitErrorMessage(res, data)

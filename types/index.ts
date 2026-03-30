@@ -74,16 +74,13 @@ export type ContactFormValues = {
 };
 
 export type ContactApiSuccess = {
-  ok: true;
+  success: true;
   message: string;
 };
 
 export type ContactApiError = {
-  ok: false;
-  error: {
-    code: string;
-    message: string;
-  };
+  success: false;
+  error: string;
 };
 
 export type ContactApiResponse = ContactApiSuccess | ContactApiError;

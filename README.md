@@ -78,5 +78,5 @@ The contact API (`/api/contact`) sends mail via **Resend** when `RESEND_API_KEY`
 
 **FormSubmit one-time activation:** The first time you use an email address with FormSubmit, you must confirm it. Submit the contact form once from your live site (or send a test POST), then open that inbox and click the activation link in FormSubmit’s email. Until the address is activated, AJAX submissions may fail or return `success: "false"`. Set `NEXT_PUBLIC_SITE_URL` to your production origin so FormSubmit accepts the request headers.
 
-**Health check (env wiring):** Set `HEALTH_CHECK_SECRET` in Vercel, then open `/api/contact/health?token=YOUR_SECRET` in the browser to confirm Resend/FormSubmit-related env without posting the form. In production, the endpoint returns 403 without a valid token.
+**Health check:** `GET /api/contact/health` returns `{ "success": true, "message": "API is healthy" }` so you can confirm the App Router API is live on Vercel.
 

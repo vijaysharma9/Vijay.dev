@@ -26,42 +26,41 @@ describe('contactSubmitErrorMessage', () => {
     vi.stubEnv('NODE_ENV', 'test');
   });
 
-  it('VALIDATION_ERROR with server message returns that message', () => {
+  it('validation error with server message returns that message', () => {
     const data: ContactApiResponse = {
-      ok: false,
-      error: { code: 'VALIDATION_ERROR', message: 'Name is required.' }
+      success: false,
+      error: 'Name is required.'
     };
     expect(contactSubmitErrorMessage(mockResponse(400), data)).toBe(
       'Name is required.'
     );
   });
 
-  it('VALIDATION_ERROR with no message returns the fields fallback', () => {
+  it('validation error with no message returns the fields fallback', () => {
     const data: ContactApiResponse = {
-      ok: false,
-      error: { code: 'VALIDATION_ERROR', message: '' }
+      success: false,
+      error: ''
     };
     expect(contactSubmitErrorMessage(mockResponse(400), data)).toBe(
       'Please check the highlighted fields and try again.'
     );
   });
 
-  it('CONTACT_SEND_FAILED includes the contact email', () => {
+  it('500 with explicit error string returns that string', () => {
     const data: ContactApiResponse = {
-      ok: false,
-      error: { code: 'CONTACT_SEND_FAILED', message: 'FormSubmit request failed' }
+      success: false,
+      error:
+        'Email could not be sent. Please try again later or contact us directly.'
     };
-    const out = contactSubmitErrorMessage(mockResponse(500), data);
-    expect(out).toContain('test@example.com');
+    expect(contactSubmitErrorMessage(mockResponse(500), data)).toBe(
+      'Email could not be sent. Please try again later or contact us directly.'
+    );
   });
 
-  it('RATE_LIMITED with server message returns that message', () => {
+  it('rate limit message returns that message', () => {
     const data: ContactApiResponse = {
-      ok: false,
-      error: {
-        code: 'RATE_LIMITED',
-        message: 'Too many requests — please wait a minute before trying again.'
-      }
+      success: false,
+      error: 'Too many requests — please wait a minute before trying again.'
     };
     expect(contactSubmitErrorMessage(mockResponse(429), data)).toBe(
       'Too many requests — please wait a minute before trying again.'
@@ -70,28 +69,28 @@ describe('contactSubmitErrorMessage', () => {
 
   it('bot in server message returns refresh copy without the word bot', () => {
     const data: ContactApiResponse = {
-      ok: false,
-      error: { code: 'VALIDATION_ERROR', message: 'Bot detected.' }
+      success: false,
+      error: 'Bot detected.'
     };
     const out = contactSubmitErrorMessage(mockResponse(400), data);
     expect(out.toLowerCase()).not.toContain('bot');
     expect(out).toContain('refresh');
   });
 
-  it('empty message and unknown code returns safe generic fallback', () => {
+  it('empty message and unknown status returns safe generic fallback', () => {
     const data: ContactApiResponse = {
-      ok: false,
-      error: { code: 'UNKNOWN', message: '' }
+      success: false,
+      error: ''
     };
-    expect(contactSubmitErrorMessage(mockResponse(400), data)).toBe(
+    expect(contactSubmitErrorMessage(mockResponse(418), data)).toBe(
       'Could not send your message. Please try again.'
     );
   });
 
-  it('500 with unknown code includes the direct email address', () => {
+  it('500 with empty error includes the direct email address', () => {
     const data: ContactApiResponse = {
-      ok: false,
-      error: { code: 'UNKNOWN', message: '' }
+      success: false,
+      error: ''
     };
     const out = contactSubmitErrorMessage(mockResponse(500), data);
     expect(out).toContain('test@example.com');

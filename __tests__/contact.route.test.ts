@@ -13,7 +13,7 @@ import { sendContactMessage } from '@/lib/contact';
 import { isRateLimited } from '@/lib/rateLimit';
 
 async function readJson(res: Response) {
-  return (await res.json()) as any;
+  return (await res.json()) as Record<string, unknown>;
 }
 
 describe('POST /api/contact', () => {
@@ -21,9 +21,11 @@ describe('POST /api/contact', () => {
     vi.resetAllMocks();
   });
 
-  it('valid body, send succeeds -> 200 ok:true', async () => {
-    (isRateLimited as any).mockReturnValue(false);
-    (sendContactMessage as any).mockResolvedValue({ provider: 'formsubmit' });
+  it('valid body, send succeeds -> 200 success:true', async () => {
+    (isRateLimited as ReturnType<typeof vi.fn>).mockReturnValue(false);
+    (sendContactMessage as ReturnType<typeof vi.fn>).mockResolvedValue({
+      provider: 'formsubmit'
+    });
 
     const req = new Request('http://localhost/api/contact', {
       method: 'POST',
@@ -40,12 +42,15 @@ describe('POST /api/contact', () => {
     expect(res.status).toBe(200);
     expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
     const json = await readJson(res);
-    expect(json.ok).toBe(true);
+    expect(json.success).toBe(true);
+    expect(typeof json.message).toBe('string');
   });
 
-  it('valid body, sendContactMessage throws -> 500 CONTACT_SEND_FAILED', async () => {
-    (isRateLimited as any).mockReturnValue(false);
-    (sendContactMessage as any).mockRejectedValue(new Error('boom'));
+  it('valid body, sendContactMessage throws -> 500 success:false', async () => {
+    (isRateLimited as ReturnType<typeof vi.fn>).mockReturnValue(false);
+    (sendContactMessage as ReturnType<typeof vi.fn>).mockRejectedValue(
+      new Error('boom')
+    );
 
     const req = new Request('http://localhost/api/contact', {
       method: 'POST',
@@ -62,12 +67,12 @@ describe('POST /api/contact', () => {
     expect(res.status).toBe(500);
     expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
     const json = await readJson(res);
-    expect(json.ok).toBe(false);
-    expect(json.error.code).toBe('CONTACT_SEND_FAILED');
+    expect(json.success).toBe(false);
+    expect(typeof json.error).toBe('string');
   });
 
-  it('missing name -> 400 VALIDATION_ERROR', async () => {
-    (isRateLimited as any).mockReturnValue(false);
+  it('missing name -> 400 success:false', async () => {
+    (isRateLimited as ReturnType<typeof vi.fn>).mockReturnValue(false);
 
     const req = new Request('http://localhost/api/contact', {
       method: 'POST',
@@ -83,12 +88,12 @@ describe('POST /api/contact', () => {
     expect(res.status).toBe(400);
     expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
     const json = await readJson(res);
-    expect(json.ok).toBe(false);
-    expect(json.error.code).toBe('VALIDATION_ERROR');
+    expect(json.success).toBe(false);
+    expect(typeof json.error).toBe('string');
   });
 
-  it('message under 10 chars -> 400 VALIDATION_ERROR', async () => {
-    (isRateLimited as any).mockReturnValue(false);
+  it('message under 10 chars -> 400 success:false', async () => {
+    (isRateLimited as ReturnType<typeof vi.fn>).mockReturnValue(false);
 
     const req = new Request('http://localhost/api/contact', {
       method: 'POST',
@@ -105,12 +110,12 @@ describe('POST /api/contact', () => {
     expect(res.status).toBe(400);
     expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
     const json = await readJson(res);
-    expect(json.ok).toBe(false);
-    expect(json.error.code).toBe('VALIDATION_ERROR');
+    expect(json.success).toBe(false);
+    expect(typeof json.error).toBe('string');
   });
 
-  it('honeypot website filled -> 400 VALIDATION_ERROR', async () => {
-    (isRateLimited as any).mockReturnValue(false);
+  it('honeypot website filled -> 400 success:false', async () => {
+    (isRateLimited as ReturnType<typeof vi.fn>).mockReturnValue(false);
 
     const req = new Request('http://localhost/api/contact', {
       method: 'POST',
@@ -127,12 +132,12 @@ describe('POST /api/contact', () => {
     expect(res.status).toBe(400);
     expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
     const json = await readJson(res);
-    expect(json.ok).toBe(false);
-    expect(json.error.code).toBe('VALIDATION_ERROR');
+    expect(json.success).toBe(false);
+    expect(typeof json.error).toBe('string');
   });
 
-  it('rate limited -> 429 RATE_LIMITED', async () => {
-    (isRateLimited as any).mockReturnValue(true);
+  it('rate limited -> 429 success:false', async () => {
+    (isRateLimited as ReturnType<typeof vi.fn>).mockReturnValue(true);
 
     const req = new Request('http://localhost/api/contact', {
       method: 'POST',
@@ -149,12 +154,12 @@ describe('POST /api/contact', () => {
     expect(res.status).toBe(429);
     expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
     const json = await readJson(res);
-    expect(json.ok).toBe(false);
-    expect(json.error.code).toBe('RATE_LIMITED');
+    expect(json.success).toBe(false);
+    expect(json.error).toContain('Too many');
   });
 
   it('non-POST method (GET) -> 405', async () => {
-    (isRateLimited as any).mockReturnValue(false);
+    (isRateLimited as ReturnType<typeof vi.fn>).mockReturnValue(false);
 
     const req = new Request('http://localhost/api/contact', {
       method: 'GET'
@@ -164,7 +169,7 @@ describe('POST /api/contact', () => {
     expect(res.status).toBe(405);
     expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
     const json = await readJson(res);
-    expect(json.ok).toBe(false);
+    expect(json.success).toBe(false);
+    expect(typeof json.error).toBe('string');
   });
 });
-

@@ -3,7 +3,7 @@
  *
  * FormSubmit.co — one-time activation (per recipient email):
  * The first time you use an address with FormSubmit, you must confirm it.
- * Submit the contact form once from your deployed site (or POST to their endpoint),
+ * Submit the contact form once from your deployed site (or send a test POST),
  * then check that inbox for FormSubmit’s activation email and click the link.
  * Until activation, AJAX requests may fail or return success: "false".
  *
@@ -45,14 +45,42 @@ export async function sendContactMessage(input: ContactSenderInput): Promise<{
   const resendFrom = process.env.RESEND_FROM_EMAIL;
   const resendTo = process.env.RESEND_TO_EMAIL;
 
-  // Safety fallback so production contact works even if env sync is delayed.
   const formSubmitTo =
     process.env.FORM_SUBMIT_TO_EMAIL?.trim() || 'vijaysharma6918h@gmail.com';
 
   const canResend = Boolean(resendApiKey && resendFrom && resendTo);
   const canFormSubmit = Boolean(formSubmitTo);
 
-  if ((preferred === 'resend' || !preferred) && canResend) {
+  if (preferred === 'resend') {
+    if (!canResend) {
+      const missing: string[] = [];
+      if (!resendApiKey) missing.push('RESEND_API_KEY');
+      if (!resendFrom) missing.push('RESEND_FROM_EMAIL');
+      if (!resendTo) missing.push('RESEND_TO_EMAIL');
+      console.error(
+        '[Resend] CONTACT_FORM_PROVIDER=resend but required env vars are missing:',
+        missing.join(', ') || '(unknown)'
+      );
+      throw new Error(
+        `Resend is not configured: missing ${missing.join(', ')}. Set RESEND_API_KEY (re_…), RESEND_FROM_EMAIL (verified domain), RESEND_TO_EMAIL.`
+      );
+    }
+    if (resendApiKey && !resendApiKey.startsWith('re_')) {
+      console.error(
+        '[Resend] RESEND_API_KEY does not look valid (expected to start with "re_"). Check Vercel env.'
+      );
+    }
+    await sendViaResend({
+      apiKey: resendApiKey!,
+      from: resendFrom!,
+      to: resendTo!,
+      subject,
+      text: messageText
+    });
+    return { provider: 'resend' };
+  }
+
+  if ((preferred === 'formsubmit' || !preferred) && canResend) {
     await sendViaResend({
       apiKey: resendApiKey!,
       from: resendFrom!,
@@ -74,6 +102,9 @@ export async function sendContactMessage(input: ContactSenderInput): Promise<{
     return { provider: 'formsubmit' };
   }
 
+  console.error(
+    '[Contact] No email provider available. Set RESEND_* for Resend or FORM_SUBMIT_TO_EMAIL for FormSubmit.'
+  );
   throw new Error(
     'Contact email sender is not configured. Set RESEND_API_KEY/RESEND_FROM_EMAIL/RESEND_TO_EMAIL or FORM_SUBMIT_TO_EMAIL.'
   );
@@ -107,21 +138,29 @@ async function sendViaResend({
     })
   });
 
-  if (!res.ok) {
-    const data = (await res.json().catch(() => ({}))) as
-      | { error?: { message?: string } }
-      | Record<string, unknown>;
-
-    const msg =
-      typeof (data as any)?.error?.message === 'string'
-        ? (data as any).error.message
-        : 'Resend request failed';
-
-    throw new Error(msg);
+  const rawBody = await res.text();
+  let parsed: { id?: string; error?: { message?: string } } = {};
+  try {
+    parsed = JSON.parse(rawBody) as typeof parsed;
+  } catch {
+    /* non-JSON */
   }
 
-  const data = (await res.json().catch(() => ({}))) as { id?: string };
-  console.log('[Resend] message delivered, id:', data?.id ?? 'n/a');
+  if (!res.ok) {
+    const apiMsg =
+      typeof parsed?.error?.message === 'string'
+        ? parsed.error.message
+        : rawBody || 'Resend request failed';
+    console.error('[Resend] API error', {
+      status: res.status,
+      statusText: res.statusText,
+      message: apiMsg,
+      body: rawBody.slice(0, 500)
+    });
+    throw new Error(`Resend error (${res.status}): ${apiMsg}`);
+  }
+
+  console.log('[Resend] message delivered, id:', parsed?.id ?? 'n/a');
 }
 
 async function sendViaFormSubmit({
