@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import type { ContactApiResponse } from '@/types';
+import { contactSubmitErrorMessage } from '@/lib/contactSubmitErrorMessage';
 import { normalizeWhitespace } from '@/utils/formatters';
 
 const contactSchema = z
@@ -69,24 +70,48 @@ export default function ContactForm() {
   const submit = async (values: ContactSchema) => {
     setServerStatus({ type: 'idle' });
 
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(values)
-    });
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(values)
+      });
 
-    const data = (await res.json()) as ContactApiResponse;
+      let data: ContactApiResponse;
+      try {
+        data = (await res.json()) as ContactApiResponse;
+      } catch {
+        setServerStatus({
+          type: 'error',
+          message: 'Could not read the server response. Please try again.'
+        });
+        return;
+      }
 
-    if (!res.ok || !data.ok) {
-      setServerStatus({ type: 'error', message: data.ok ? 'Unknown error' : data.error.message });
-      return;
+      if (!res.ok || !data.ok) {
+        setServerStatus({
+          type: 'error',
+          message: contactSubmitErrorMessage(res, data)
+        });
+        return;
+      }
+
+      setServerStatus({
+        type: 'success',
+        message:
+          data.message ||
+          'Message sent! I will get back to you within 24 hours.'
+      });
+      reset();
+
+      // Keep the UX close to the legacy site: move the user back to the contact section.
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch {
+      setServerStatus({
+        type: 'error',
+        message: 'Network error. Check your connection and try again.'
+      });
     }
-
-    setServerStatus({ type: 'success', message: data.message });
-    reset();
-
-    // Keep the UX close to the legacy site: move the user back to the contact section.
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const successId = 'contact-success';

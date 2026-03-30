@@ -1,3 +1,16 @@
+/**
+ * Contact email delivery (Resend preferred, FormSubmit.co fallback).
+ *
+ * FormSubmit.co — one-time activation (per recipient email):
+ * The first time you use an address with FormSubmit, you must confirm it.
+ * Submit the contact form once from your deployed site (or POST to their endpoint),
+ * then check that inbox for FormSubmit’s activation email and click the link.
+ * Until activation, AJAX requests may fail or return success: "false".
+ *
+ * Env: FORM_SUBMIT_TO_EMAIL, NEXT_PUBLIC_SITE_URL (Origin/Referer for AJAX),
+ * optional CONTACT_FORM_PROVIDER (`resend` | `formsubmit`), Resend vars when using Resend.
+ */
+
 import { normalizeWhitespace } from '@/utils/formatters';
 
 export type ContactSenderInput = {
@@ -52,11 +65,11 @@ export async function sendContactMessage(input: ContactSenderInput): Promise<{
 
   if ((preferred === 'formsubmit' || !preferred) && canFormSubmit) {
     await sendViaFormSubmit({
-      to: formSubmitTo!,
-      subject,
-      replyTo: email,
       name,
-      text: messageText
+      email,
+      projectType,
+      budgetRange,
+      message: normalizeWhitespace(input.message)
     });
     return { provider: 'formsubmit' };
   }
@@ -106,60 +119,100 @@ async function sendViaResend({
 
     throw new Error(msg);
   }
+
+  const data = (await res.json().catch(() => ({}))) as { id?: string };
+  console.log('[Resend] message delivered, id:', data?.id ?? 'n/a');
 }
 
 async function sendViaFormSubmit({
-  to,
-  subject,
-  replyTo,
   name,
-  text
+  email,
+  projectType,
+  budgetRange,
+  message
 }: {
-  to: string;
-  subject: string;
-  replyTo: string;
   name: string;
-  text: string;
+  email: string;
+  projectType?: string;
+  budgetRange?: string;
+  message: string;
 }) {
+  const formSubmitTarget =
+    process.env.FORM_SUBMIT_TO_EMAIL?.trim() || 'vijaysharma6918h@gmail.com';
+  if (!formSubmitTarget || !formSubmitTarget.includes('@')) {
+    throw new Error('FORM_SUBMIT_TO_EMAIL is not a valid email address');
+  }
+
   const siteUrl = (
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hiredevelopershop.com'
-  ).trim();
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ?? 'https://www.hiredevelopershop.com'
+  ).replace(/\/+$/, '');
 
-  const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Origin: siteUrl,
-      Referer: `${siteUrl.replace(/\/$/, '')}/`
-    },
-    body: JSON.stringify({
-      name,
-      email: replyTo,
-      _subject: subject,
-      _replyto: replyTo,
-      message: text
-    })
-  });
+  const payload = {
+    name,
+    email,
+    _subject: `New contact from ${name} — HireDeveloperShop`,
+    _replyto: email,
+    _next: siteUrl,
+    _captcha: 'false',
+    _template: 'table',
+    message: `Project Type: ${projectType || 'Not specified'}\nBudget: ${budgetRange || 'Not specified'}\n\n${message}`
+  };
 
-  const data = (await res.json().catch(() => ({}))) as
-    | { success?: string; message?: string; error?: string }
-    | Record<string, unknown>;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 8_000);
 
-  const success =
-    typeof (data as any)?.success === 'string'
-      ? (data as any).success.toLowerCase() === 'true'
-      : false;
+  try {
+    const res = await fetch(
+      `https://formsubmit.co/ajax/${encodeURIComponent(formSubmitTarget)}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Origin: siteUrl,
+          Referer: siteUrl
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal
+      }
+    );
 
-  if (!res.ok || !success) {
-    const msg =
-      typeof (data as any)?.message === 'string'
-        ? (data as any).message
-        : typeof (data as any)?.error === 'string'
-          ? (data as any).error
-          : 'FormSubmit request failed';
+    const responseText = await res.text();
+    console.error('[FormSubmit] status:', res.status, 'body:', responseText);
 
-    throw new Error(msg);
+    if (!res.ok) {
+      throw new Error(`FormSubmit HTTP ${res.status}: ${responseText}`);
+    }
+
+    let json: { success?: string } = {};
+    try {
+      json = JSON.parse(responseText) as { success?: string };
+    } catch {
+      /* non-JSON body */
+    }
+
+    if (json.success !== 'true') {
+      throw new Error(`FormSubmit rejected: ${responseText}`);
+    }
+
+    console.log('[FormSubmit] message delivered to', formSubmitTarget);
+  } catch (err) {
+    if (err instanceof Error && err.name === 'AbortError') {
+      throw new Error('FormSubmit timed out after 8 s — try again later');
+    }
+    if (err instanceof Error) {
+      if (
+        err.message.startsWith('FormSubmit HTTP') ||
+        err.message.startsWith('FormSubmit rejected')
+      ) {
+        throw err;
+      }
+    }
+    const inner = err instanceof Error ? err.message : String(err);
+    throw new Error(
+      `FormSubmit failed: ${inner}. Raw response is logged above as [FormSubmit] body.`
+    );
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
-

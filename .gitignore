@@ -4,5 +4,9 @@ out/
 coverage/
 
 .env*
+!.env.example
 .DS_Store
 
+.vercel
+
+*.tsbuildinfo

@@ -1,60 +1,82 @@
-# HireDeveloperShop Landing Website
+# HireDeveloperShop Website (Next.js)
 
-This repository contains a static, single-page marketing website for `hiredevelopershop.com`.
-The project is built with plain HTML, CSS, and JavaScript (no framework or build step).
+This repository contains the `hiredevelopershop.com` marketing website built with Next.js, React, TypeScript, and Tailwind CSS.
+
+## Tech Stack
+
+- Next.js 14 (`app/` router)
+- React 18 + TypeScript
+- Tailwind CSS + PostCSS
+- React Hook Form + Zod (form handling and validation)
 
 ## Project Structure
 
-- `index.html` - Main landing page (primary source of truth).
-- `index (4).html` - Duplicate copy of the landing page.
-- `assets/` - Images used across sections (portfolio cards, service visuals, logos).
-- `styles.css` - Older standalone stylesheet not used by the current main page.
-- `robots.txt`, `sitemap.xml`, `CNAME` - SEO and hosting configuration files.
+- `app/` - App Router pages, layout, global styles, and SEO routes (`robots`, `sitemap`).
+- `app/(sections)/` - Section-oriented app content organization.
+- `components/sections/` - Reusable landing page sections (hero, services, pricing, contact, etc.).
+- `constants/` - Static content and configuration constants.
+- `lib/` and `utils/` - Shared helpers (including schema/SEO utilities).
+- `public/` and `assets/` - Static files and media.
 
-## Main Sections
+## Main Homepage Sections
 
-The page includes:
+The home page (`app/page.tsx`) renders:
 
 - Hero
 - About
 - Services
 - Tech Stack
-- Why Choose Us
+- Why Us
 - Portfolio
 - Pricing
 - Testimonials
-- Call to Action
-- Contact Form
+- CTA
+- Contact
 
-## Interactive Features
+## SEO and Metadata
 
-- Sticky navigation with mobile menu.
-- Scroll-based reveal animations.
-- Active section highlighting in navigation.
-- Contact form with client-side validation and AJAX submit flow.
-- Floating/sticky consultation CTA.
+- Metadata is generated in `app/page.tsx`.
+- JSON-LD schema is injected for organization, website, and services.
+- `app/robots.ts` and `app/sitemap.ts` provide crawl/indexing metadata.
 
 ## Run Locally
 
-You can open `index.html` directly in a browser, or run a local server:
+Install dependencies:
 
 ```bash
-python3 -m http.server 5173
+npm install
 ```
 
-Then open:
+Start the development server:
 
-- `http://localhost:5173/`
+```bash
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+## Available Scripts
+
+- `npm run dev` - Start local development server.
+- `npm run build` - Create production build.
+- `npm run start` - Run production server.
+- `npm run lint` - Run lint checks.
 
 ## Deployment
 
-This is a static site and can be deployed to any static hosting provider
-(GitHub Pages, Netlify, Vercel static output, etc.). The included `CNAME`
-file is used for custom domain mapping on compatible hosts.
+This project is ready for deployment on Vercel or any platform that supports Next.js.
 
-## Notes
+For Vercel:
 
-- Keep `index.html` as the primary editable file to avoid drift with `index (4).html`.
-- Consider removing or archiving duplicate/legacy files once confirmed unnecessary.
-- Contact form currently posts to an external FormSubmit endpoint configured in-page.
+1. Import the repository in Vercel.
+2. Keep default Next.js build settings.
+3. Configure environment variables in project settings if needed.
+
+## Contact form and FormSubmit.co
+
+The contact API (`/api/contact`) sends mail via **Resend** when `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, and `RESEND_TO_EMAIL` are set; otherwise it uses **FormSubmit.co** with `FORM_SUBMIT_TO_EMAIL` (see `.env.example`).
+
+**FormSubmit one-time activation:** The first time you use an email address with FormSubmit, you must confirm it. Submit the contact form once from your live site (or send a test POST), then open that inbox and click the activation link in FormSubmit’s email. Until the address is activated, AJAX submissions may fail or return `success: "false"`. Set `NEXT_PUBLIC_SITE_URL` to your production origin so FormSubmit accepts the request headers.
+
+**Health check (env wiring):** Set `HEALTH_CHECK_SECRET` in Vercel, then open `/api/contact/health?token=YOUR_SECRET` in the browser to confirm Resend/FormSubmit-related env without posting the form. In production, the endpoint returns 403 without a valid token.
 
