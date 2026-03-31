@@ -1,4 +1,4 @@
-import ContactForm from '@/components/sections/ContactForm';
+import ContactFormSection from '@/components/sections/contact/ContactFormSection';
 import { CONTACT } from '@/constants/contact';
 
 export default function ContactSection() {
@@ -88,7 +88,7 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <ContactForm />
+        <ContactFormSection />
       </div>
     </section>
   );

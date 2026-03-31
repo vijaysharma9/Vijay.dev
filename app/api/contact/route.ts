@@ -90,7 +90,7 @@ export async function POST(req: Request) {
     return jsonResponse(
       {
         success: true,
-        message: '✅ Message sent! We will get back to you within 24 hours.'
+        message: 'Message sent! We will get back to you within 24 hours.'
       },
       200
     );
