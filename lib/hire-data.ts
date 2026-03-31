@@ -1,5 +1,5 @@
 export type ContactLink = {
-  icon: string;
+  id: 'email' | 'whatsapp' | 'upwork' | 'github';
   label: string;
   value: string;
   href: string;
@@ -42,28 +42,28 @@ export type FAQItem = {
 
 export const CONTACT_LINKS: ContactLink[] = [
   {
-    icon: '✉️',
+    id: 'email',
     label: 'Email',
     value: 'vijaysharma6918h@gmail.com',
     href: 'mailto:vijaysharma6918h@gmail.com',
     colorClass: 'blue'
   },
   {
-    icon: '💬',
+    id: 'whatsapp',
     label: 'WhatsApp',
     value: '+91 8527594730',
     href: 'https://wa.me/918527594730',
     colorClass: 'green'
   },
   {
-    icon: '⭐',
+    id: 'upwork',
     label: 'Upwork · Top Rated · 5.0',
     value: 'View Profile & Reviews',
     href: 'https://www.upwork.com/freelancers/~019b3aee9c5d781d36',
     colorClass: 'purple'
   },
   {
-    icon: '🐙',
+    id: 'github',
     label: 'GitHub',
     value: 'github.com/vijaysharma9',
     href: 'https://github.com/vijaysharma9',

@@ -195,7 +195,13 @@ export default function ProjectForm({ layout = 'page' }: { layout?: 'page' | 'em
       <h2 id="hire-form-heading" className="sr-only">
         Project inquiry form
       </h2>
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.5fr] lg:items-start lg:gap-16">
+      <div
+        className={cn(
+          'grid grid-cols-1 gap-10',
+          layout === 'embed' ? '' : 'lg:grid-cols-[1fr_1.5fr] lg:items-start lg:gap-16'
+        )}
+      >
+        {layout !== 'embed' ? (
           <aside className="lg:sticky lg:top-28">
             <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[#4f8cff]">
               Project Inquiry
@@ -241,8 +247,14 @@ export default function ProjectForm({ layout = 'page' }: { layout?: 'page' | 'em
               })}
             </div>
           </aside>
+        ) : null}
 
-          <div className="overflow-hidden rounded-[20px] border border-white/[0.07] bg-[#09090f]">
+        <div
+          className={cn(
+            'overflow-hidden rounded-[20px] border border-white/[0.07] bg-[#09090f]',
+            layout === 'embed' && 'w-full min-w-0'
+          )}
+        >
             <div className="h-[3px] w-full bg-white/[0.05]">
               <div
                 className="h-full bg-gradient-to-r from-[#4f8cff] to-[#00e5a0] transition-[width] duration-500 ease-out"
