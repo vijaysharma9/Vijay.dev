@@ -6,6 +6,6 @@ export const CTA = {
   primaryCtaLabel: 'Start Project Now',
   whatsappLabel: 'Chat on WhatsApp',
   whatsappUrl:
-    'https://wa.me/918527594730?text=Hi%20Vijay%2C%20I%20want%20to%20discuss%20a%20project'
+    'https://wa.me/918527594730?text=Hi%2C%20I%20want%20to%20discuss%20a%20project'
 };
 

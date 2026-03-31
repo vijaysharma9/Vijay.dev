@@ -23,7 +23,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 'sarah-p',
     stars: '★★★★★',
-    text: "Fast, reliable, and very professional. Vijay's team handled everything end-to-end. We will definitely work together again on our next project.",
+    text: "Fast, reliable, and very professional. The team handled everything end-to-end. We will definitely work together again on our next project.",
     authorInitials: 'SP',
     authorAvatarClass: 'av2',
     authorName: 'Sarah P.',

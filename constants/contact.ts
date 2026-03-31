@@ -6,7 +6,7 @@ export const CONTACT = {
   emailHref: 'mailto:vijaysharma6918h@gmail.com',
   emailValue: 'vijaysharma6918h@gmail.com',
   locationLabel: 'Location',
-  locationValue: 'India — Available Worldwide',
+  locationValue: 'Available Worldwide',
   socials: [
     {
       id: 'upwork',

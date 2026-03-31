@@ -27,6 +27,18 @@ export function buildWebsiteJsonLd() {
   } as const;
 }
 
+export function buildItemListJsonLd(names: string[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: names.map((name, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name
+    }))
+  } as const;
+}
+
 export function buildServicesJsonLd(services: Service[]) {
   const servicesUrl = `${baseUrl.toString()}#services`;
 
@@ -42,27 +54,13 @@ export function buildServicesJsonLd(services: Service[]) {
   }));
 }
 
-/** JSON-LD Person for the /about page (matches @graph pattern used on the home page). */
-export function buildPersonJsonLd() {
-  const aboutUrl = new URL('/about', baseUrl).toString();
+/** ItemList of technology names for `/stack` SEO. */
+export function buildStackItemListJsonLd(techNames: string[]) {
+  return buildItemListJsonLd(techNames);
+}
 
-  return {
-    '@type': 'Person',
-    '@id': `${aboutUrl}#person`,
-    name: 'Vijay Sharma',
-    url: aboutUrl,
-    jobTitle: 'Full-Stack Developer & IT Consultant',
-    description:
-      'Full-stack developer and IT consultant with 8+ years of experience building scalable web applications, SaaS platforms, and AI solutions.',
-    sameAs: [
-      'https://www.upwork.com/freelancers/~019b3aee9c5d781d36',
-      'https://github.com/vijaysharma9/Vijay.dev'
-    ],
-    worksFor: {
-      '@type': 'Organization',
-      name: ORGANIZATION_NAME,
-      url: baseUrl.toString()
-    }
-  } as const;
+/** ItemList of service names for `/services` SEO. */
+export function buildServicesItemListJsonLd(serviceNames: string[]) {
+  return buildItemListJsonLd(serviceNames);
 }
 

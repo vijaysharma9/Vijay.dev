@@ -13,8 +13,8 @@ import MobileMenu from '@/components/layout/MobileMenu';
 
 const MOBILE_ITEMS = [
   { id: 'about', label: 'About', href: '/about' },
-  { id: 'services', label: 'Services' },
-  { id: 'tech', label: 'Tech Stack' },
+  { id: 'services', label: 'Services', href: '/services' },
+  { id: 'tech', label: 'Tech Stack', href: '/stack' },
   { id: 'portfolio', label: 'Work' },
   { id: 'pricing', label: 'Pricing' },
   { id: 'testimonials', label: 'Testimonials' },
@@ -55,11 +55,22 @@ export default function Header() {
 
         <ul className="nav-links">
           {NAV_ITEMS.map((item) => {
-            const href = item.id === 'about' ? '/about' : `/#${item.id}`;
+            const href =
+              item.id === 'about'
+                ? '/about'
+                : item.id === 'services'
+                  ? '/services'
+                  : item.id === 'tech'
+                    ? '/stack'
+                    : `/#${item.id}`;
             const isActive =
               item.id === 'about'
                 ? pathname === '/about' || (pathname === '/' && activeId === 'about')
-                : pathname === '/' && activeId === item.id;
+                : item.id === 'services'
+                  ? pathname === '/services' || (pathname === '/' && activeId === 'services')
+                  : item.id === 'tech'
+                    ? pathname === '/stack' || (pathname === '/' && activeId === 'tech')
+                    : pathname === '/' && activeId === item.id;
 
             return (
               <li key={item.id}>

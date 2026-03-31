@@ -10,7 +10,7 @@ export default function Footer() {
             <span className="brand-com">.com</span>
           </div>
           <div className="footer-tagline">
-            Full-Stack Developer &amp; Freelance Team — India
+            Full-Stack Developer &amp; Freelance Team — Worldwide
           </div>
         </div>
 
@@ -39,7 +39,7 @@ export default function Footer() {
         </ul>
 
         <div className="footer-copy">
-          © 2026 Vijay Sharma. All Rights Reserved.
+          © 2026 HireDeveloperShop. All Rights Reserved.
           <br />
           <span className="text-accent2">
             Full-Stack Development · AI Solutions · Freelance Team

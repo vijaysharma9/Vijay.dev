@@ -100,7 +100,7 @@ export default function ContactForm() {
         type: 'success',
         message:
           data.message ||
-          'Message sent! I will get back to you within 24 hours.'
+          'Message sent! We will get back to you within 24 hours.'
       });
       reset();
 
@@ -203,7 +203,7 @@ export default function ContactForm() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="fmsg">Tell me about your project *</label>
+          <label htmlFor="fmsg">Tell us about your project *</label>
           <textarea
             id="fmsg"
             placeholder="Describe your idea, requirements, or questions…"

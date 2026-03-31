@@ -40,7 +40,7 @@ export default function AboutHero() {
         />
       </div>
 
-      <div className="relative z-[1] w-full max-w-[1200px]">
+      <div className="hero-inner">
         <div className="max-w-[900px]">
           <div
             className={cn(

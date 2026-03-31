@@ -4,15 +4,15 @@
  */
 
 export const ABOUT_HERO = {
-  eyebrow: 'About Me',
-  titleLine1: 'The Developer',
+  eyebrow: 'About Us',
+  titleLine1: 'The Freelance Team',
   titleLine2: 'Behind the ',
   titleEmphasis: 'Work',
   subtitle:
-    "I'm Vijay Sharma — a full-stack developer and IT consultant who builds scalable digital products that actually ship. No agency bloat, just focused engineering.",
+    "We're a senior freelance full-stack team — developers and IT consultants who ship scalable digital products. No agency bloat, just focused engineering.",
   primaryCtaLabel: 'Start a Project',
   primaryCtaHref: '/#contact',
-  secondaryCtaLabel: 'View My Work',
+  secondaryCtaLabel: 'View Our Work',
   /** Homepage portfolio section */
   secondaryCtaHref: '/#portfolio',
   stats: [
@@ -24,18 +24,18 @@ export const ABOUT_HERO = {
 } as const;
 
 export const ABOUT_STORY = {
-  sectionLabel: 'My Story',
+  sectionLabel: 'Our Story',
   titleLine1: 'From Freelancer to',
   titleEmphasis: 'Full-Stack Partner',
   paragraphs: [
     {
-      html: 'I started writing code at 19 with one goal: build things that matter. Over 8 years I\'ve worked with <strong>startups, SaaS companies, and enterprise teams</strong> across India, the UK, US, and Australia — delivering everything from MVP prototypes to production-grade platforms.'
+      html: 'We started with one goal: build things that matter. Over 8 years we\'ve worked with <strong>startups, SaaS companies, and enterprise teams</strong> across the UK, US, and Australia — delivering everything from MVP prototypes to production-grade platforms.'
     },
     {
-      html: 'What sets me apart isn\'t just the code I write — it\'s how I <strong>think about your business</strong>. I ask the hard questions before writing a single line. I\'ve saved clients months of rework by catching architectural mistakes early.'
+      html: 'What sets our freelance team apart isn\'t just the code we ship — it\'s how we <strong>think about your business</strong>. We ask the hard questions before writing a single line. We\'ve saved clients months of rework by catching architectural mistakes early.'
     },
     {
-      html: 'Today I run <strong>HireDeveloperShop</strong> — a lean, senior-only consultancy that gives you agency-quality output at freelance rates. No juniors, no middlemen, no fluff.'
+      html: '<strong>HireDeveloperShop</strong> is a lean, senior-only freelance team — agency-quality output at freelance rates. No juniors, no middlemen, no fluff.'
     }
   ],
   cardTitle: '⚡ Career Timeline',
@@ -48,17 +48,17 @@ export const ABOUT_STORY = {
     {
       year: '2018',
       textHtml:
-        '<strong>Joined Upwork</strong> — quickly reached Top Rated status with 5-star reviews across 15+ clients.'
+        '<strong>Joined Upwork</strong> — we quickly reached Top Rated status with 5-star reviews across 15+ clients.'
     },
     {
       year: '2020',
       textHtml:
-        '<strong>Pivoted to full-stack</strong> — added React, Next.js, Node.js and cloud infrastructure to the toolkit.'
+        '<strong>Pivoted to full-stack</strong> — we added React, Next.js, Node.js and cloud infrastructure to the toolkit.'
     },
     {
       year: '2022',
       textHtml:
-        '<strong>AI & Automation</strong> — started building LLM-powered tools and workflow automation for B2B clients.'
+        '<strong>AI & Automation</strong> — we started building LLM-powered tools and workflow automation for B2B clients.'
     },
     {
       year: '2024',
@@ -69,10 +69,10 @@ export const ABOUT_STORY = {
 } as const;
 
 export const ABOUT_MISSION = {
-  sectionLabel: 'What Drives Me',
-  titleLine1: 'My Mission & ',
+  sectionLabel: 'What Drives Us',
+  titleLine1: 'Our Mission & ',
   titleEmphasis: 'Approach',
-  sub: 'Three principles that shape every project I take on.',
+  sub: 'Three principles that shape every project we take on.',
   cards: [
     {
       id: 'outcomes',
@@ -88,7 +88,7 @@ export const ABOUT_MISSION = {
       iconTone: 'purple' as const,
       title: 'Engineering Depth',
       description:
-        'I go beyond surface-level solutions. Performance, scalability, and maintainability are baked in from day one — not bolted on later.'
+        'We go beyond surface-level solutions. Performance, scalability, and maintainability are baked in from day one — not bolted on later.'
     },
     {
       id: 'transparency',
@@ -103,7 +103,7 @@ export const ABOUT_MISSION = {
 
 export const ABOUT_VALUES = {
   sectionLabel: 'Core Values',
-  titleLine1: 'How I Work With ',
+  titleLine1: 'How We Work With ',
   titleEmphasis: 'Clients',
   items: [
     {
@@ -125,20 +125,20 @@ export const ABOUT_VALUES = {
       num: '03',
       title: 'Async-First Communication',
       description:
-        "Detailed Loom updates and structured check-ins. No pointless meetings — your time is as valuable as mine."
+        "Detailed Loom updates and structured check-ins. No pointless meetings — your time is as valuable as ours."
     },
     {
       id: 'v4',
       num: '04',
       title: 'Long-Term Thinking',
       description:
-        'I build to last. The code I write today should still be maintainable in three years, by any developer.'
+        'We build to last. The code we ship today should still be maintainable in three years, by any developer.'
     }
   ],
   quote:
-    "I don't just write code — I join your team temporarily and care about your product as if it were my own. That's the only way I know how to work.",
-  citeName: 'Vijay Sharma',
-  citeRole: 'Founder, HireDeveloperShop',
+    "We don't just write code — we join your team for the build and care about your product as if it were our own. That's the only way we work.",
+  citeName: 'HireDeveloperShop',
+  citeRole: 'Freelance Development Team',
   tags: [
     'Clean Code',
     'Agile Delivery',
@@ -192,10 +192,10 @@ export const ABOUT_TEAM = {
   sectionLabel: 'The Team',
   titleLine1: 'Senior-Only, ',
   titleEmphasis: 'No Middlemen',
-  avatarInitials: 'VS',
-  name: 'Vijay Sharma',
-  role: 'Full-Stack Developer & IT Consultant',
-  bio: 'Based in India, working globally. 8+ years building web apps, SaaS platforms, AI integrations, and eCommerce solutions for clients across 3 continents.',
+  avatarInitials: 'HD',
+  name: 'HireDeveloperShop',
+  role: 'Freelance Full-Stack Team',
+  bio: 'Working globally. 8+ years building web apps, SaaS platforms, AI integrations, and eCommerce solutions for clients across 3 continents.',
   badges: ['Upwork Top Rated', '5.0 ⭐ Rating', '50+ Projects'],
   skillsHeading: 'Technical Depth',
   skills: [
@@ -219,7 +219,7 @@ export const ABOUT_TEAM = {
     {
       id: 'e3',
       title: '📋 Project Tools',
-      description: 'GitHub, Jira, Linear, Notion — I adapt to your workflow, not the other way.'
+      description: 'GitHub, Jira, Linear, Notion — we adapt to your workflow, not the other way.'
     },
     {
       id: 'e4',
@@ -231,9 +231,9 @@ export const ABOUT_TEAM = {
 
 export const ABOUT_STACK = {
   sectionLabel: 'Technology',
-  titleLine1: 'Tools I Trust in ',
+  titleLine1: 'Tools We Trust in ',
   titleEmphasis: 'Production',
-  sub: "Not trend-chasing — a curated stack I've used on real client projects.",
+  sub: 'Not trend-chasing — a curated stack we use on real client projects.',
   rows: [
     [
       { label: 'React', accent: true },
@@ -278,7 +278,7 @@ export const ABOUT_CTA = {
   titleEm: 'Idea',
   titleAfter: ' Into a Product',
   description:
-    "Whether you're starting from scratch or scaling an existing platform — I'd love to hear what you're building.",
+    "Whether you're starting from scratch or scaling an existing platform — we'd love to hear what you're building.",
   primaryLabel: 'Start a Project',
   primaryHref: '/#contact',
   secondaryLabel: '💬 Chat on WhatsApp',

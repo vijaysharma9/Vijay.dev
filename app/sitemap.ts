@@ -16,6 +16,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified
     },
     {
+      url: `${baseUrl}/services`,
+      lastModified
+    },
+    {
+      url: `${baseUrl}/stack`,
+      lastModified
+    },
+    {
       url: `${baseUrl}/#services`,
       lastModified
     },
