@@ -40,7 +40,7 @@ export function buildItemListJsonLd(names: string[]) {
 }
 
 export function buildServicesJsonLd(services: Service[]) {
-  const servicesUrl = `${baseUrl.toString()}#services`;
+  const servicesUrl = new URL('/services', baseUrl).toString();
 
   return services.map((service) => ({
     '@type': 'Service',

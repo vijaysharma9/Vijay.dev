@@ -6,11 +6,7 @@ export default function StickyNav() {
   return (
     <>
       <Header />
-      <Link
-        href="/#contact"
-        className="sticky-consult-cta"
-        aria-label="Book free consultation"
-      >
+      <Link href="/hire" className="sticky-consult-cta" aria-label="Book free consultation">
         Book Free Consultation
       </Link>
     </>

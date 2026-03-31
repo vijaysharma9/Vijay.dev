@@ -12,7 +12,7 @@ export default function CTASection() {
         <p className="cta-desc">{CTA.description}</p>
 
         <div className="cta-btns">
-          <Link href="/#contact" className="btn-primary">
+          <Link href="/hire" className="btn-primary">
             {CTA.primaryCtaLabel}
           </Link>
 

@@ -55,7 +55,11 @@ export default function MobileMenu({
                     ? pathname === '/work' || (pathname === '/' && activeId === 'portfolio')
                     : item.id === 'pricing'
                       ? pathname === '/pricing' || (pathname === '/' && activeId === 'pricing')
-                    : pathname === '/' && activeId === item.id;
+                      : item.id === 'contact'
+                        ? pathname === '/hire'
+                        : item.id === 'testimonials'
+                          ? pathname === '/' && activeId === 'testimonials'
+                          : pathname === '/' && activeId === item.id;
           const href = item.href ?? `/#${item.id}`;
 
           return (

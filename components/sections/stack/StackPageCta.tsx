@@ -18,7 +18,7 @@ export default function StackPageCta() {
         </>
       }
       description="Not sure what technology fits your project? Book a free 30-minute technical consultation. We'll map out the right stack for your use case, team, and budget."
-      primary={{ href: '/#contact', label: 'Book a Free Tech Call' }}
+      primary={{ href: '/hire', label: 'Book a Free Tech Call' }}
       secondary={{ href: 'https://wa.me/918527594730', label: '💬 WhatsApp Us', external: true }}
     />
   );

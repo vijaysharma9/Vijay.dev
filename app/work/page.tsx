@@ -70,7 +70,7 @@ export default function WorkPage() {
           </>
         }
         description="Free 30-minute discovery call. Scoped proposal within 24 hours. Fixed-price quote, no surprises — just like every project above."
-        primary={{ href: '/#contact', label: 'Start Your Project' }}
+        primary={{ href: '/hire', label: 'Start Your Project' }}
         secondary={{
           href: 'https://wa.me/918527594730?text=Hi%2C%20I%27d%20like%20to%20discuss%20a%20project.',
           label: 'Chat on WhatsApp',

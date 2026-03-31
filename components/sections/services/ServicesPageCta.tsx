@@ -18,7 +18,7 @@ export default function ServicesPageCta() {
         </>
       }
       description="Free 30-minute discovery call. Scoped proposal within 24 hours. No commitment required."
-      primary={{ href: '/#contact', label: 'Book a Free Call' }}
+      primary={{ href: '/hire', label: 'Book a Free Call' }}
       secondary={{ href: 'https://wa.me/918527594730', label: '💬 WhatsApp Us', external: true }}
     />
   );

@@ -56,7 +56,7 @@ export default function PricingCards({ isAnnual }: { isAnnual: boolean }) {
 
           <div className="flex min-w-[180px] flex-col gap-3">
             <a
-              href="/#contact"
+              href="/hire"
               className="rounded-lg bg-[#4f8cff] px-6 py-3 text-center text-[0.92rem] font-semibold text-white shadow-[0_0_28px_rgba(79,140,255,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(79,140,255,0.38)]"
             >
               Book Discovery Call

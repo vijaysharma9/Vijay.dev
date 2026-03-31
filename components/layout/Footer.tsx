@@ -16,16 +16,16 @@ export default function Footer() {
 
         <ul className="footer-links" aria-label="Footer navigation">
           <li>
-            <Link href="/#services">Web Development</Link>
+            <Link href="/services">Web Development</Link>
           </li>
           <li>
-            <Link href="/#services">AI Solutions</Link>
+            <Link href="/services">AI Solutions</Link>
           </li>
           <li>
-            <Link href="/#services">eCommerce</Link>
+            <Link href="/services">eCommerce</Link>
           </li>
           <li>
-            <Link href="/#services">Freelance Team</Link>
+            <Link href="/about">Freelance Team</Link>
           </li>
           <li>
             <a

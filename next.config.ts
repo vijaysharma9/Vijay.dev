@@ -39,17 +39,17 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/hire-react-developer',
-        destination: '/#services',
+        destination: '/services',
         permanent: true
       },
       {
         source: '/hire-nodejs-developer',
-        destination: '/#services',
+        destination: '/services',
         permanent: true
       },
       {
         source: '/it-consultancy-services',
-        destination: '/#services',
+        destination: '/services',
         permanent: true
       }
     ];

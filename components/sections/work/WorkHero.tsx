@@ -72,7 +72,7 @@ export default function WorkHero() {
             )}
           >
             <Link
-              href="/#contact"
+              href="/hire"
               className="rounded-lg bg-[#4f8cff] px-[1.7rem] py-[0.72rem] text-[0.92rem] font-semibold text-white shadow-[0_0_28px_rgba(79,140,255,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(79,140,255,0.38)]"
             >
               Start Your Project

@@ -11,10 +11,10 @@ export const ABOUT_HERO = {
   subtitle:
     "We're a senior freelance full-stack team — developers and IT consultants who ship scalable digital products. No agency bloat, just focused engineering.",
   primaryCtaLabel: 'Start a Project',
-  primaryCtaHref: '/#contact',
+  primaryCtaHref: '/hire',
   secondaryCtaLabel: 'View Our Work',
-  /** Homepage portfolio section */
-  secondaryCtaHref: '/#portfolio',
+  /** Portfolio / case studies */
+  secondaryCtaHref: '/work',
   stats: [
     { value: '8+', label: 'Years Experience' },
     { value: '50+', label: 'Projects Delivered' },
@@ -280,7 +280,7 @@ export const ABOUT_CTA = {
   description:
     "Whether you're starting from scratch or scaling an existing platform — we'd love to hear what you're building.",
   primaryLabel: 'Start a Project',
-  primaryHref: '/#contact',
+  primaryHref: '/hire',
   secondaryLabel: '💬 Chat on WhatsApp',
   secondaryHref: 'https://wa.me/918527594730'
 } as const;

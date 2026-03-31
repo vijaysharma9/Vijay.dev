@@ -24,7 +24,7 @@ export default function PricingCard({ plan }: { plan: PricingPlan }) {
       </ul>
 
       <Link
-        href="/#contact"
+        href="/hire"
         className={plan.ctaVariant === 'primary' ? 'btn-primary' : 'btn-secondary'}
       >
         {plan.ctaLabel}

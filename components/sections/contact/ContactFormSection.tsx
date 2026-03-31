@@ -226,7 +226,7 @@ export default function ContactFormSection() {
             Browse Services
           </Link>
           <Link
-            href="/#contact"
+            href="/"
             className="rounded-lg border border-white/[0.07] px-6 py-3 text-[0.92rem] font-medium text-[#e8e8f0] transition hover:border-[#4f8cff] hover:text-[#4f8cff]"
           >
             Back to Contact

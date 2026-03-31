@@ -21,7 +21,7 @@ export default function HeroSection() {
         <p className="hero-sub">{HERO.subtitle}</p>
 
         <div className="hero-btns">
-          <Link href="/#contact" className="btn-primary">
+          <Link href="/hire" className="btn-primary">
             {HERO.primaryCtaLabel}
           </Link>
 
@@ -44,7 +44,7 @@ export default function HeroSection() {
             Chat on WhatsApp
           </a>
 
-          <Link href="/#portfolio" className="btn-secondary">
+          <Link href="/work" className="btn-secondary">
             {HERO.secondaryCtaLabel}
           </Link>
         </div>

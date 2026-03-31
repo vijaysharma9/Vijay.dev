@@ -72,7 +72,7 @@ export const PLANS: Plan[] = [
     monthlyPrice: 499,
     annualPrice: 399,
     tagline: 'Per project · Starting from. Perfect for landing pages, business sites, and small web apps.',
-    cta: { label: 'Get Started', href: '/#contact' },
+    cta: { label: 'Get Started', href: '/hire' },
     ctaStyle: 'outline',
     popular: false,
     features: [
@@ -95,7 +95,7 @@ export const PLANS: Plan[] = [
     monthlyPrice: 1999,
     annualPrice: 1599,
     tagline: 'Per project · Starting from. Full-stack web apps, SaaS MVPs, and eCommerce platforms.',
-    cta: { label: 'Start Project', href: '/#contact' },
+    cta: { label: 'Start Project', href: '/hire' },
     ctaStyle: 'primary',
     popular: true,
     features: [
@@ -119,7 +119,7 @@ export const PLANS: Plan[] = [
     annualPrice: 3999,
     tagline:
       'Per project · Starting from. Complex SaaS, AI-powered platforms, and multi-service architectures.',
-    cta: { label: 'Request Quote', href: '/#contact' },
+    cta: { label: 'Request Quote', href: '/hire' },
     ctaStyle: 'outline',
     popular: false,
     features: [

@@ -17,8 +17,8 @@ const MOBILE_ITEMS = [
   { id: 'tech', label: 'Tech Stack', href: '/stack' },
   { id: 'portfolio', label: 'Work', href: '/work' },
   { id: 'pricing', label: 'Pricing', href: '/pricing' },
-  { id: 'testimonials', label: 'Testimonials' },
-  { id: 'contact', label: 'Contact / Hire Me' }
+  { id: 'testimonials', label: 'Testimonials', href: '/' },
+  { id: 'contact', label: 'Contact / Hire Me', href: '/hire' }
 ];
 
 export default function Header() {
@@ -44,11 +44,7 @@ export default function Header() {
   return (
     <nav className={cn(isScrolled && 'nav-scrolled')} aria-label="Primary">
       <div className="nav-inner">
-        <Link
-          href="/#hero"
-          className="nav-logo"
-          aria-label="HireDeveloperShop home"
-        >
+        <Link href="/" className="nav-logo" aria-label="HireDeveloperShop home">
           <span className="brand-word">HireDeveloperShop</span>
           <span className="brand-com">.com</span>
         </Link>

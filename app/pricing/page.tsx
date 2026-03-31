@@ -83,7 +83,7 @@ export default function PricingPage() {
           </>
         }
         description="Book a free 30-minute call. Describe your project and we'll tell you exactly which plan fits — or quote you a custom price on the spot. No obligation, no hard sell."
-        primary={{ href: '/#contact', label: 'Book a Free Call' }}
+        primary={{ href: '/hire', label: 'Book a Free Call' }}
         secondary={{
           href: 'https://wa.me/918527594730?text=Hi%2C%20I%27d%20like%20to%20discuss%20a%20project.',
           label: 'WhatsApp Us',

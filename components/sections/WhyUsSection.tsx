@@ -36,7 +36,7 @@ export default function WhyUsSection() {
             {WHY_CTA.paragraph}
           </p>
 
-          <Link href="/#contact" className="btn-primary inline-flex justify-center">
+          <Link href="/hire" className="btn-primary inline-flex justify-center">
             Start Your Project
           </Link>
 
