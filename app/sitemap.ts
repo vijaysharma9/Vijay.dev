@@ -32,6 +32,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified
     },
     {
+      url: `${baseUrl}/hire`,
+      lastModified
+    },
+    {
       url: `${baseUrl}/#services`,
       lastModified
     },

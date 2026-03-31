@@ -95,9 +95,9 @@ export default function Header() {
 
           <li>
             <Link
-              href={`/#${CONTACT_NAV_ID}`}
-              className={cn('nav-cta', activeId === CONTACT_NAV_ID && 'active')}
-              aria-current={activeId === CONTACT_NAV_ID ? 'page' : undefined}
+              href="/hire"
+              className={cn('nav-cta', pathname === '/hire' && 'active')}
+              aria-current={pathname === '/hire' ? 'page' : undefined}
             >
               Hire Me
             </Link>
