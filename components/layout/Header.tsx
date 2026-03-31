@@ -15,8 +15,8 @@ const MOBILE_ITEMS = [
   { id: 'about', label: 'About', href: '/about' },
   { id: 'services', label: 'Services', href: '/services' },
   { id: 'tech', label: 'Tech Stack', href: '/stack' },
-  { id: 'portfolio', label: 'Work' },
-  { id: 'pricing', label: 'Pricing' },
+  { id: 'portfolio', label: 'Work', href: '/work' },
+  { id: 'pricing', label: 'Pricing', href: '/pricing' },
   { id: 'testimonials', label: 'Testimonials' },
   { id: 'contact', label: 'Contact / Hire Me' }
 ];
@@ -62,7 +62,11 @@ export default function Header() {
                   ? '/services'
                   : item.id === 'tech'
                     ? '/stack'
-                    : `/#${item.id}`;
+                    : item.id === 'portfolio'
+                      ? '/work'
+                      : item.id === 'pricing'
+                        ? '/pricing'
+                      : `/#${item.id}`;
             const isActive =
               item.id === 'about'
                 ? pathname === '/about' || (pathname === '/' && activeId === 'about')
@@ -70,7 +74,11 @@ export default function Header() {
                   ? pathname === '/services' || (pathname === '/' && activeId === 'services')
                   : item.id === 'tech'
                     ? pathname === '/stack' || (pathname === '/' && activeId === 'tech')
-                    : pathname === '/' && activeId === item.id;
+                    : item.id === 'portfolio'
+                      ? pathname === '/work' || (pathname === '/' && activeId === 'portfolio')
+                      : item.id === 'pricing'
+                        ? pathname === '/pricing' || (pathname === '/' && activeId === 'pricing')
+                      : pathname === '/' && activeId === item.id;
 
             return (
               <li key={item.id}>
