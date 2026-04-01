@@ -1,32 +1,37 @@
-import type { Service } from '@/types';
+'use client';
 
-import { SERVICES } from '@/constants/services';
+import Link from 'next/link';
 
-import ServiceCard from '@/components/modules/ServiceCard';
+import ServicesShowcase from '@/components/sections/services/ServicesShowcase';
+import { SERVICES } from '@/lib/services-data';
 
 export default function ServicesSection() {
-  const services: Service[] = SERVICES;
-
   return (
-    <section id="services" aria-labelledby="services-title">
-      <div className="services-header reveal">
-        <span className="section-label">What We Do</span>
-        <div className="divider" aria-hidden="true" />
-        <h2 id="services-title" className="section-title">
-          End-to-End IT Services Under One Roof
-        </h2>
-        <p className="section-desc">
-          From concept to deployment, we cover the complete product lifecycle so you never need
-          to juggle multiple vendors.
-        </p>
-      </div>
-
-      <div className="services-grid" aria-label="Services list">
-        {services.map((service) => (
-          <ServiceCard key={service.id} service={service} />
-        ))}
-      </div>
-    </section>
+    <ServicesShowcase
+      id="services"
+      ariaLabelledby="services-title"
+      className="bg-[#0d0d18]"
+      headerAlign="split"
+      services={SERVICES.slice(0, 6)}
+      eyebrow="What We Do"
+      title={
+        <span id="services-title">
+          End-to-End IT Services{' '}
+          <em className="not-italic bg-gradient-to-br from-[#4f8cff] to-[#a259ff] bg-clip-text text-transparent">
+            Under One Roof
+          </em>
+        </span>
+      }
+      description="From concept to deployment, we cover the complete product lifecycle so you never need to juggle multiple vendors."
+      headerRight={
+        <Link
+          href="/services"
+          className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-[rgba(255,255,255,0.03)] px-4 py-2 text-[0.85rem] font-semibold text-[#e8e8f0] transition-colors hover:border-white/[0.14] hover:bg-[rgba(255,255,255,0.05)]"
+        >
+          All 18 Services <span aria-hidden>→</span>
+        </Link>
+      }
+    />
   );
 }
 

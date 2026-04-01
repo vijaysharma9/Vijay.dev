@@ -9,7 +9,10 @@ export default function PricingSection() {
         <span className="section-label">Pricing</span>
         <div className="divider" aria-hidden="true" />
         <h2 id="pricing-title" className="section-title">
-          Transparent, Budget-Friendly IT Consultancy Packages
+          Transparent, Budget-Friendly{' '}
+          <span className="bg-gradient-to-br from-[#4f8cff] to-[#a259ff] bg-clip-text text-transparent">
+            IT Consultancy Packages
+          </span>
         </h2>
         <p className="section-desc">
           No hidden fees. No agency markups. Just honest pricing for high-quality

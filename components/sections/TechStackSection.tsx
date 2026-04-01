@@ -7,7 +7,10 @@ export default function TechStackSection() {
         <span className="section-label">Technologies</span>
         <div className="divider" aria-hidden="true" />
         <h2 id="tech-title" className="section-title">
-          Technologies We Work With
+          Technologies We{' '}
+          <span className="bg-gradient-to-br from-[#4f8cff] to-[#a259ff] bg-clip-text text-transparent">
+            Work with
+          </span>
         </h2>
         <p className="section-desc">A battle-tested stack for modern, scalable, production-ready applications.</p>
       </div>

@@ -24,7 +24,10 @@ export default function AboutSection() {
           <div className="divider" aria-hidden="true" />
 
           <h2 id="about-title" className="section-title">
-            IT Consultancy That Delivers — Not Just Quotes
+            IT Consultancy That Delivers —{' '}
+            <span className="bg-gradient-to-br from-[#4f8cff] to-[#a259ff] bg-clip-text text-transparent">
+              Not Just Quotes
+            </span>
           </h2>
 
           <p className="section-desc">

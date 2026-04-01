@@ -1,28 +1,43 @@
-import { PROJECTS } from '@/constants/projects';
+'use client';
 
-import ProjectCard from '@/components/modules/ProjectCard';
+import Link from 'next/link';
+
+import ProjectsShowcase from '@/components/sections/work/ProjectsShowcase';
+import { PROJECTS } from '@/lib/work-data';
 
 export default function PortfolioSection() {
   return (
-    <section id="portfolio" aria-labelledby="portfolio-title">
-      <div className="portfolio-header reveal">
-        <span className="section-label">Our Work</span>
-        <div className="divider" aria-hidden="true" />
-        <h2 id="portfolio-title" className="section-title">
-          Projects We've Built
-        </h2>
-        <p className="section-desc">
-          Delivered across industries — startups, SaaS, eCommerce, and enterprise. Each built
-          to scale.
-        </p>
-      </div>
-
-      <div className="portfolio-grid" aria-label="Projects grid">
-        {PROJECTS.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
-    </section>
+    <ProjectsShowcase
+      id="portfolio"
+      ariaLabelledby="portfolio-title"
+      projects={PROJECTS.slice(0, 6)}
+      headerAlign="split"
+      eyebrow="Our Work"
+      title={
+        <>
+          <span id="portfolio-title">
+            Projects{' '}
+            <em className="not-italic bg-gradient-to-br from-[#4f8cff] to-[#a259ff] bg-clip-text text-transparent">
+              We&apos;ve Built
+            </em>
+          </span>
+        </>
+      }
+      description={
+        <>
+          Delivered across industries — startups, SaaS, eCommerce, and enterprise. Each built to
+          scale.
+        </>
+      }
+      headerRight={
+        <Link
+          href="/work"
+          className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-[rgba(255,255,255,0.03)] px-4 py-2 text-[0.85rem] font-semibold text-[#e8e8f0] transition-colors hover:border-white/[0.14] hover:bg-[rgba(255,255,255,0.05)]"
+        >
+          See All 50+ Projects <span aria-hidden>→</span>
+        </Link>
+      }
+    />
   );
 }
 

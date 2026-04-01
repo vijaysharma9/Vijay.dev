@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
+import nextDynamic from 'next/dynamic';
 
 import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
@@ -11,6 +12,10 @@ import PricingSection from '@/components/sections/PricingSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import CTASection from '@/components/sections/CTASection';
 import ContactSection from '@/components/sections/ContactSection';
+
+const AISpotlight = nextDynamic(() => import('@/components/sections/stack/AISpotlight'), {
+  ssr: false
+});
 
 import {
   buildOrganizationJsonLd,
@@ -69,7 +74,7 @@ export default function HomePage() {
   };
 
   return (
-    <main>
+    <main className="min-h-screen bg-[#09090f] font-body text-[#e8e8f0] antialiased">
       <script
         type="application/ld+json"
         // JSON-LD for SEO; safe because it's generated from constants.
@@ -90,6 +95,9 @@ export default function HomePage() {
       </Suspense>
       <Suspense fallback={null}>
         <WhyUsSection />
+      </Suspense>
+      <Suspense fallback={null}>
+        <AISpotlight />
       </Suspense>
       <Suspense fallback={null}>
         <PortfolioSection />

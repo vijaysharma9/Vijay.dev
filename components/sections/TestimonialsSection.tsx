@@ -9,7 +9,10 @@ export default function TestimonialsSection() {
         <span className="section-label">Client Feedback</span>
         <div className="divider" aria-hidden="true" />
         <h2 id="testimonials-title" className="section-title">
-          What Clients Say
+          What Clients{' '}
+          <span className="bg-gradient-to-br from-[#4f8cff] to-[#a259ff] bg-clip-text text-transparent">
+            Say
+          </span>
         </h2>
         <p className="section-desc">
           Real feedback from real clients. We let the work speak for itself.

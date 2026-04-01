@@ -9,7 +9,10 @@ export default function WhyUsSection() {
           <span className="section-label">Why Us</span>
           <div className="divider" aria-hidden="true" />
           <h2 id="why-title" className="section-title">
-            Why Clients Choose Us
+            Why Clients{' '}
+            <span className="bg-gradient-to-br from-[#4f8cff] to-[#a259ff] bg-clip-text text-transparent">
+              Choose Us
+            </span>
           </h2>
 
           <ul className="why-list" aria-label="Why clients choose us">
