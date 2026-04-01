@@ -50,11 +50,10 @@ export default function HireHero() {
             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#4f8cff]" aria-hidden />
             Let&apos;s work together
           </div>
-          <h1 className="font-heading tracking-[-0.03em] text-[#e8e8f0]">
-            <span className="block text-[clamp(2.25rem,4.5vw,3.15rem)] font-extrabold leading-[1.12]">
-              Start Your Project
-            </span>
-            <span className="mt-1 block bg-gradient-to-r from-[#4f8cff] to-[#00e5a0] bg-clip-text text-[clamp(2.75rem,6vw,4.25rem)] font-extrabold leading-[1.05] text-transparent">
+          <h1 className="font-heading text-[clamp(2.8rem,7vw,5.2rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-[#e8e8f0]">
+            Start Your Project
+            <br />
+            <span className="bg-gradient-to-r from-[#4f8cff] to-[#00e5a0] bg-clip-text text-transparent">
               Today.
             </span>
           </h1>

@@ -42,7 +42,7 @@ export default function PricingHero({
         <h1
           id="pricing-hero-heading"
           className={cn(
-            'font-heading text-[clamp(2.8rem,6vw,4.8rem)] font-extrabold leading-[1.05] tracking-[-0.03em] transition-all delay-75 duration-700 ease-out',
+            'font-heading text-[clamp(2.8rem,7vw,5.2rem)] font-extrabold leading-[1.05] tracking-[-0.03em] transition-all delay-75 duration-700 ease-out',
             isInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
           )}
         >

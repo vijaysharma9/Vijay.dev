@@ -55,7 +55,7 @@ export default function AboutHero() {
           <h1
             id="about-hero-heading"
             className={cn(
-              'font-heading text-[clamp(2.8rem,7vw,5.5rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-[#e8e8f0] transition-all delay-75 duration-700 ease-out',
+              'font-heading text-[clamp(2.8rem,7vw,5.2rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-[#e8e8f0] transition-all delay-75 duration-700 ease-out',
               isInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             )}
           >
