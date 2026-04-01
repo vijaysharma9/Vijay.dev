@@ -5,10 +5,10 @@ export default function Footer() {
     <footer>
       <div className="footer-inner">
         <div>
-          <div className="footer-logo">
+          <Link href="/" className="footer-logo" aria-label="HireDeveloperShop home">
             <span className="brand-word">HireDeveloperShop</span>
             <span className="brand-com">.com</span>
-          </div>
+          </Link>
           <div className="footer-tagline">
             Full-Stack Developer &amp; Freelance Team — Worldwide
           </div>

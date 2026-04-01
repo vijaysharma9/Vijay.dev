@@ -20,12 +20,13 @@
   --gold: #f59e0b;
   --text: #e8edf5;
   --muted: #7a8ba8;
+  --font-heading: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  /* next/fontgoogle injects --font-heading / --font-body on body */
+  /* `--font-body` is injected by `next/font`. Heading font is set in `:root`. */
   --heading: var(--font-heading);
   --body: var(--font-body);
 
