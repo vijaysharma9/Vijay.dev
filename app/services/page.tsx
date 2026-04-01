@@ -17,14 +17,10 @@ const ServicesIndustries = dynamic(
 const ComparisonTable = dynamic(() => import('@/components/sections/services/ComparisonTable'), {
   ssr: false
 });
-const ServicesTestimonials = dynamic(
-  () => import('@/components/sections/services/ServicesTestimonials'),
-  { ssr: false }
-);
 const ServicesFAQ = dynamic(() => import('@/components/sections/services/ServicesFAQ'), {
   ssr: false
 });
-const ServicesPageCta = dynamic(() => import('@/components/sections/services/ServicesPageCta'), {
+const ServicesCTA = dynamic(() => import('@/components/sections/services/ServicesPageCta'), {
   ssr: false
 });
 
@@ -78,9 +74,8 @@ export default function ServicesPage() {
       <ServicesProcess />
       <ServicesIndustries />
       <ComparisonTable />
-      <ServicesTestimonials />
       <ServicesFAQ />
-      <ServicesPageCta />
+      <ServicesCTA />
     </main>
   );
 }

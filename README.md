@@ -8,6 +8,7 @@ This repository contains the `hiredevelopershop.com` marketing website built wit
 - React 18 + TypeScript
 - Tailwind CSS + PostCSS
 - React Hook Form + Zod (form handling and validation)
+- Vitest (unit tests)
 
 ## Project Structure
 
@@ -47,6 +48,12 @@ Install dependencies:
 npm install
 ```
 
+Create a local env file:
+
+```bash
+cp .env.example .env.local
+```
+
 Start the development server:
 
 ```bash
@@ -61,6 +68,8 @@ Open `http://localhost:3000`.
 - `npm run build` - Create production build.
 - `npm run start` - Run production server.
 - `npm run lint` - Run lint checks.
+- `npm test` - Run unit tests once (Vitest).
+- `npm run test:watch` - Run unit tests in watch mode (Vitest).
 
 ## Deployment
 
@@ -74,7 +83,20 @@ For Vercel:
 
 ## Contact form and FormSubmit.co
 
-The contact API (`/api/contact`) sends mail via **Resend** when `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, and `RESEND_TO_EMAIL` are set; otherwise it uses **FormSubmit.co** with `FORM_SUBMIT_TO_EMAIL` (see `.env.example`).
+### API routes
+
+- `POST /api/contact`: Validates a basic contact payload (`name`, `email`, `message`, optional `projectType`, `budgetRange`) and applies a simple IP rate-limit (default: 3/minute).
+- `POST /api/contact/submit`: Validates an alternate contact payload used by some forms (`formType: "contact"`, `fullName`, `email`, `message`, optional phone/company fields).
+- `GET /api/contact/health`: Returns `{ "success": true, "message": "API is healthy" }`.
+
+### Email delivery
+
+The contact sender (`lib/contact.ts`) uses:
+
+- **Resend (preferred)** when `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, and `RESEND_TO_EMAIL` are set (or when `CONTACT_FORM_PROVIDER=resend` is set).
+- **FormSubmit.co (fallback)** when `FORM_SUBMIT_TO_EMAIL` is set (or when `CONTACT_FORM_PROVIDER=formsubmit` is set).
+
+See `.env.example` for the full list of env vars.
 
 **FormSubmit one-time activation:** The first time you use an email address with FormSubmit, you must confirm it. Submit the contact form once from your live site (or send a test POST), then open that inbox and click the activation link in FormSubmit’s email. Until the address is activated, AJAX submissions may fail or return `success: "false"`. Set `NEXT_PUBLIC_SITE_URL` to your production origin so FormSubmit accepts the request headers.
 

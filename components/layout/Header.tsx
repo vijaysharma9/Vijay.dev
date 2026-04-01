@@ -17,7 +17,7 @@ const MOBILE_ITEMS = [
   { id: 'tech', label: 'Tech Stack', href: '/stack' },
   { id: 'portfolio', label: 'Work', href: '/work' },
   { id: 'pricing', label: 'Pricing', href: '/pricing' },
-  { id: 'testimonials', label: 'Testimonials', href: '/' },
+  { id: 'testimonials', label: 'Testimonials' },
   { id: 'contact', label: 'Contact / Hire Me', href: '/hire' }
 ];
 

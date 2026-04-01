@@ -48,8 +48,8 @@ export default function BookACall() {
               Full-Stack Developer & IT Consultant
             </div>
             <p className="mx-auto mt-4 max-w-sm text-[0.84rem] leading-relaxed text-[#7b7b99]">
-              8+ years building SaaS, AI, eCommerce, and enterprise platforms. Based in India, working with
-              clients globally across UK, US, and Australia.
+              8+ years building SaaS, AI, eCommerce, and enterprise platforms. Working with clients globally
+              across UK, US, and Australia.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-2">
               {['Upwork Top Rated', '5.0 ⭐ Rating', '50+ Projects', '3 Continents'].map((b) => (
@@ -77,9 +77,6 @@ export default function BookACall() {
             >
               💬 WhatsApp Instead
             </a>
-            <p className="mt-4 text-[0.75rem] text-[#7b7b99]">
-              📍 India (IST · UTC+5:30) — Flexible overlap for UK, EU & US-East
-            </p>
           </div>
         </div>
       </div>
