@@ -625,7 +625,7 @@ section { padding: 100px clamp(1.5rem, 5vw, 4rem) 100px; position: relative; }
   transition: all 0.2s;
 }
 
-.why-item:hover { border-color: rgba(59,130,246,0.3); transform: translateX(4px); }
+.why-item:hover { border-color: rgba(59,130,246,0.3); margin-left: 4px; }
 
 .why-check {
   width: 24px; height: 24px;
