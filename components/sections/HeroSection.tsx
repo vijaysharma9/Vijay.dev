@@ -11,12 +11,7 @@ export default function HeroSection() {
       <div className="hero-inner">
         <div className="hero-badge">{HERO.badge}</div>
 
-        <h1 className="hero-title">
-          {HERO.titleLines[0]} <br />
-          <span className="line2">{HERO.titleLines[1]}</span>
-          <br />
-          <span className="line3">{HERO.titleLines[2]}</span>
-        </h1>
+        <h1 className="hero-title">{HERO.headline}</h1>
 
         <p className="hero-sub">{HERO.subtitle}</p>
 

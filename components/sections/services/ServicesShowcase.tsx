@@ -6,6 +6,7 @@ import { useInView } from 'framer-motion';
 import { cn } from '@/utils/cn';
 import type { Service } from '@/lib/services-data';
 import ServiceGridCard from '@/components/sections/services/ServiceGridCard';
+import { getServiceSeoHref } from '@/lib/service-seo-routes';
 
 export default function ServicesShowcase({
   services,
@@ -96,7 +97,10 @@ export default function ServicesShowcase({
               )}
               style={{ transitionDelay: `${(index % 3) * 70}ms` }}
             >
-              <ServiceGridCard service={service} />
+              <ServiceGridCard
+                service={service}
+                href={getServiceSeoHref(service.id)}
+              />
             </div>
           ))}
         </div>

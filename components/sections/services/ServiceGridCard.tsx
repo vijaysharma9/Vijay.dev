@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { cn } from '@/utils/cn';
 import type { Service, ServiceColor } from '@/lib/services-data';
 
@@ -23,19 +25,15 @@ const ICON_BG: Record<ServiceColor, string> = {
 
 export default function ServiceGridCard({
   service,
-  idProp
+  idProp,
+  href
 }: {
   service: Service;
   idProp?: string;
+  href?: string;
 }) {
-  return (
-    <article
-      id={idProp}
-      className={cn(
-        'group relative cursor-default overflow-hidden rounded-[18px] border border-white/[0.07] bg-[rgba(255,255,255,0.032)] p-8 transition-[transform,border-color] duration-300 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:opacity-0 after:transition-opacity after:duration-300 group-hover:-translate-y-1 group-hover:border-[rgba(79,140,255,0.28)] group-hover:after:opacity-100',
-        AFTER[service.color]
-      )}
-    >
+  const inner = (
+    <>
       <div
         className={cn(
           'mb-5 flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-[14px] text-2xl',
@@ -61,7 +59,26 @@ export default function ServiceGridCard({
           </span>
         ))}
       </div>
+    </>
+  );
+
+  const cardClass = cn(
+    'group relative block overflow-hidden rounded-[18px] border border-white/[0.07] bg-[rgba(255,255,255,0.032)] p-8 transition-[transform,border-color] duration-300 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:opacity-0 after:transition-opacity after:duration-300 group-hover:-translate-y-1 group-hover:border-[rgba(79,140,255,0.28)] group-hover:after:opacity-100',
+    AFTER[service.color],
+    href ? 'cursor-pointer no-underline' : 'cursor-default'
+  );
+
+  if (href) {
+    return (
+      <Link id={idProp} href={href} className={cardClass}>
+        {inner}
+      </Link>
+    );
+  }
+
+  return (
+    <article id={idProp} className={cardClass}>
+      {inner}
     </article>
   );
 }
-

@@ -11,6 +11,7 @@ export const NAV_ITEMS: NavigationItem[] = [
   { id: 'services', label: 'Services' },
   { id: 'tech', label: 'Stack' },
   { id: 'portfolio', label: 'Work' },
+  { id: 'blog', label: 'Blog' },
   { id: 'pricing', label: 'Pricing' }
 ];
 

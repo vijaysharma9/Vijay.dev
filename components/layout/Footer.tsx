@@ -16,6 +16,9 @@ export default function Footer() {
 
         <ul className="footer-links" aria-label="Footer navigation">
           <li>
+            <Link href="/blog">Blog</Link>
+          </li>
+          <li>
             <Link href="/services">Web Development</Link>
           </li>
           <li>

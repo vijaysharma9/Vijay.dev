@@ -1,40 +1,83 @@
 import type { MetadataRoute } from 'next';
 
+import { sql } from '@vercel/postgres';
+
 import { SITE_URL } from '@/constants/navigation';
+import { CASE_STUDIES } from '@/lib/case-study-pages';
+import { HIRE_LANDINGS } from '@/lib/seo-hire-landings';
+import { SERVICE_LANDING } from '@/lib/seo-service-landings';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = SITE_URL;
-  const lastModified = new Date('2026-03-27T00:00:00.000Z');
+const weekly = 'weekly' as const;
+const monthly = 'monthly' as const;
 
-  return [
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = SITE_URL.replace(/\/$/, '');
+  const lastMod = new Date();
+
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/`, lastModified: lastMod, changeFrequency: weekly, priority: 1 },
+    { url: `${baseUrl}/about`, lastModified: lastMod, changeFrequency: monthly, priority: 0.8 },
+    { url: `${baseUrl}/services`, lastModified: lastMod, changeFrequency: weekly, priority: 0.9 },
+    { url: `${baseUrl}/stack`, lastModified: lastMod, changeFrequency: monthly, priority: 0.6 },
+    { url: `${baseUrl}/work`, lastModified: lastMod, changeFrequency: weekly, priority: 0.8 },
+    { url: `${baseUrl}/pricing`, lastModified: lastMod, changeFrequency: weekly, priority: 0.9 },
+    { url: `${baseUrl}/hire`, lastModified: lastMod, changeFrequency: weekly, priority: 1 },
+    { url: `${baseUrl}/blog`, lastModified: lastMod, changeFrequency: weekly, priority: 0.8 },
     {
-      url: `${baseUrl}/`,
-      lastModified
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified
-    },
-    {
-      url: `${baseUrl}/services`,
-      lastModified
-    },
-    {
-      url: `${baseUrl}/stack`,
-      lastModified
-    },
-    {
-      url: `${baseUrl}/work`,
-      lastModified
-    },
-    {
-      url: `${baseUrl}/pricing`,
-      lastModified
-    },
-    {
-      url: `${baseUrl}/hire`,
-      lastModified
+      url: `${baseUrl}/blog/how-to-hire-dedicated-developer-2025`,
+      lastModified: new Date('2025-04-01'),
+      changeFrequency: monthly,
+      priority: 0.85
     }
   ];
-}
 
+  const servicePages: MetadataRoute.Sitemap = Object.keys(SERVICE_LANDING).map((slug) => ({
+    url: `${baseUrl}/services/${slug}`,
+    lastModified: lastMod,
+    changeFrequency: monthly,
+    priority: 0.9
+  }));
+
+  const hirePages: MetadataRoute.Sitemap = Object.values(HIRE_LANDINGS).map((h) => ({
+    url: `${baseUrl}${h.path}`,
+    lastModified: lastMod,
+    changeFrequency: monthly,
+    priority: 0.95
+  }));
+
+  const casePages: MetadataRoute.Sitemap = CASE_STUDIES.map((c) => ({
+    url: `${baseUrl}/work/${c.slug}`,
+    lastModified: lastMod,
+    changeFrequency: monthly,
+    priority: 0.75
+  }));
+
+  let blogPosts: MetadataRoute.Sitemap = [];
+  try {
+    const { rows } = await sql`
+      SELECT slug, updated_at FROM posts WHERE status = 'published'
+    `;
+    blogPosts = rows.map((row) => {
+      const post = row as { slug: string; updated_at: Date | string };
+      return {
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified:
+          post.updated_at instanceof Date
+            ? post.updated_at
+            : new Date(post.updated_at),
+        changeFrequency: monthly,
+        priority: 0.7
+      };
+    });
+  } catch {
+    /* no POSTGRES_URL at build */
+  }
+
+  return [
+    ...staticPages,
+    ...servicePages,
+    ...hirePages,
+    ...casePages,
+    ...blogPosts
+  ];
+}

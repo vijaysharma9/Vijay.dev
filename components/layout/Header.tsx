@@ -16,6 +16,7 @@ const MOBILE_ITEMS = [
   { id: 'services', label: 'Services', href: '/services' },
   { id: 'tech', label: 'Tech Stack', href: '/stack' },
   { id: 'portfolio', label: 'Work', href: '/work' },
+  { id: 'blog', label: 'Blog', href: '/blog' },
   { id: 'pricing', label: 'Pricing', href: '/pricing' },
   { id: 'testimonials', label: 'Testimonials' },
   { id: 'contact', label: 'Contact / Hire Me', href: '/hire' }
@@ -60,8 +61,10 @@ export default function Header() {
                     ? '/stack'
                     : item.id === 'portfolio'
                       ? '/work'
-                      : item.id === 'pricing'
-                        ? '/pricing'
+                      : item.id === 'blog'
+                        ? '/blog'
+                        : item.id === 'pricing'
+                          ? '/pricing'
                       : `/#${item.id}`;
             const isActive =
               item.id === 'about'
@@ -71,9 +74,13 @@ export default function Header() {
                   : item.id === 'tech'
                     ? pathname === '/stack' || (pathname === '/' && activeId === 'tech')
                     : item.id === 'portfolio'
-                      ? pathname === '/work' || (pathname === '/' && activeId === 'portfolio')
-                      : item.id === 'pricing'
-                        ? pathname === '/pricing' || (pathname === '/' && activeId === 'pricing')
+                      ? pathname === '/work' ||
+                        pathname.startsWith('/work/') ||
+                        (pathname === '/' && activeId === 'portfolio')
+                      : item.id === 'blog'
+                        ? pathname === '/blog' || pathname.startsWith('/blog/')
+                        : item.id === 'pricing'
+                          ? pathname === '/pricing' || (pathname === '/' && activeId === 'pricing')
                       : pathname === '/' && activeId === item.id;
 
             return (

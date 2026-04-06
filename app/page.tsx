@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import nextDynamic from 'next/dynamic';
 
+import { JsonLd } from '@/components/JsonLd';
 import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
 import ServicesSection from '@/components/sections/ServicesSection';
@@ -12,17 +13,16 @@ import PricingSection from '@/components/sections/PricingSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import CTASection from '@/components/sections/CTASection';
 import ContactSection from '@/components/sections/ContactSection';
+import HomeFAQSection from '@/components/sections/HomeFAQSection';
 
 const AISpotlight = nextDynamic(() => import('@/components/sections/stack/AISpotlight'), {
   ssr: false
 });
 
-import {
-  buildOrganizationJsonLd,
-  buildWebsiteJsonLd,
-  buildServicesJsonLd
-} from '@/lib/schema';
+import { buildServicesJsonLd } from '@/lib/schema';
+import { buildFaqPageSchema } from '@/lib/seo-jsonld';
 import { SERVICES } from '@/constants/services';
+import { HOMEPAGE_FAQS } from '@/constants/homepage-faqs';
 import { SITE_URL } from '@/constants/navigation';
 
 export const dynamic = 'force-static';
@@ -30,56 +30,51 @@ export const revalidate = false;
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = new URL(SITE_URL);
-
-  const title = 'Hire Dedicated Developers | Full Stack & IT Consultancy Services';
+  const title = 'Hire Dedicated Developers | Affordable Full-Stack & IT Consultancy';
   const description =
-    'Hire dedicated developers for full-stack web, SaaS, eCommerce, and AI projects with expert IT consultancy. Get a free consultation and fast delivery.';
+    'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web projects. Upwork Top Rated — 8+ years, 50+ projects delivered globally. Get a free consultation.';
 
   return {
     metadataBase: baseUrl,
     title,
     description,
     alternates: {
-      canonical: baseUrl.toString()
+      canonical: baseUrl.toString().replace(/\/$/, '') + '/'
     },
     openGraph: {
       type: 'website',
       url: baseUrl,
       title,
-      description,
+      description:
+        'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web projects.',
       images: [
         {
           url: new URL('/assets/feature-image.png', baseUrl).toString(),
-          alt: 'HireDeveloperShop feature image showcasing IT consultancy and full-stack development services.'
+          alt: 'HireDeveloperShop'
         }
       ]
     },
     twitter: {
       card: 'summary_large_image',
       title,
-      description,
-      images: [new URL('/assets/feature-image.png', baseUrl).toString()]
+      description
     }
   };
 }
 
 export default function HomePage() {
+  const servicesGraph = buildServicesJsonLd(SERVICES);
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@graph': [
-      buildOrganizationJsonLd(),
-      buildWebsiteJsonLd(),
-      ...buildServicesJsonLd(SERVICES)
-    ]
+    '@graph': [...servicesGraph]
   };
+
+  const faqSchema = buildFaqPageSchema(HOMEPAGE_FAQS);
 
   return (
     <main className="min-h-screen bg-[#09090f] font-body text-[#e8e8f0] antialiased">
-      <script
-        type="application/ld+json"
-        // JSON-LD for SEO; safe because it's generated from constants.
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={faqSchema} />
 
       <Suspense fallback={null}>
         <HeroSection />
@@ -109,6 +104,9 @@ export default function HomePage() {
         <TestimonialsSection />
       </Suspense>
       <Suspense fallback={null}>
+        <HomeFAQSection />
+      </Suspense>
+      <Suspense fallback={null}>
         <CTASection />
       </Suspense>
       <Suspense fallback={null}>
@@ -117,4 +115,3 @@ export default function HomePage() {
     </main>
   );
 }
-

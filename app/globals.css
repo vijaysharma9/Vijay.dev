@@ -49,8 +49,8 @@ body::before {
   opacity: 0.4;
 }
 
-/* ─── NAV ─── */
-nav {
+/* ─── NAV (primary site header only — do not target all <nav>, e.g. breadcrumbs) ─── */
+nav[aria-label='Primary'] {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
@@ -61,7 +61,7 @@ nav {
   border-bottom: 1px solid var(--border);
 }
 
-.nav-scrolled {
+nav[aria-label='Primary'].nav-scrolled {
   background: rgba(8,11,18,0.97);
 }
 

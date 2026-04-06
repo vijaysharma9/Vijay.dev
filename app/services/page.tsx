@@ -26,7 +26,7 @@ const ServicesCTA = dynamic(() => import('@/components/sections/services/Service
 
 import { SITE_URL } from '@/constants/navigation';
 import { SERVICES } from '@/lib/services-data';
-import { buildOrganizationJsonLd, buildServicesItemListJsonLd } from '@/lib/schema';
+import { buildServicesItemListJsonLd } from '@/lib/schema';
 
 const servicesUrl = new URL('/services', SITE_URL).toString();
 const title = 'IT Services — Full-Stack Development, AI & Automation | HireDeveloperShop';
@@ -58,7 +58,7 @@ export default function ServicesPage() {
   const itemList = buildServicesItemListJsonLd(SERVICES.map((s) => s.title));
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@graph': [buildOrganizationJsonLd(), itemList]
+    '@graph': [itemList]
   };
 
   return (

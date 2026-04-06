@@ -52,7 +52,11 @@ export default function MobileMenu({
                 : item.id === 'tech'
                   ? pathname === '/stack' || (pathname === '/' && activeId === 'tech')
                   : item.id === 'portfolio'
-                    ? pathname === '/work' || (pathname === '/' && activeId === 'portfolio')
+                    ? pathname === '/work' ||
+                      pathname.startsWith('/work/') ||
+                      (pathname === '/' && activeId === 'portfolio')
+                    : item.id === 'blog'
+                      ? pathname === '/blog' || pathname.startsWith('/blog/')
                     : item.id === 'pricing'
                       ? pathname === '/pricing' || (pathname === '/' && activeId === 'pricing')
                       : item.id === 'contact'

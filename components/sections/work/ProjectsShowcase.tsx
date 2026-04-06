@@ -1,14 +1,17 @@
 'use client';
 
+import Link from 'next/link';
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 
 import { cn } from '@/utils/cn';
 import type { Project } from '@/lib/work-data';
+import { getWorkCaseStudyHref } from '@/lib/service-seo-routes';
 
 function WorkProjectCard({ project }: { project: Project }) {
-  return (
-    <article className="proj-card cursor-pointer overflow-hidden rounded-[18px] border border-white/[0.07] bg-[rgba(255,255,255,0.032)] transition-[transform,border-color] duration-200 hover:-translate-y-1 hover:border-[rgba(79,140,255,0.28)]">
+  const caseHref = getWorkCaseStudyHref(project.id);
+  const inner = (
+    <>
       <div
         className={cn(
           'proj-img relative flex h-[180px] items-center justify-center',
@@ -58,6 +61,23 @@ function WorkProjectCard({ project }: { project: Project }) {
           </span>
         </div>
       </div>
+    </>
+  );
+
+  if (caseHref) {
+    return (
+      <Link
+        href={caseHref}
+        className="proj-card group block cursor-pointer overflow-hidden rounded-[18px] border border-white/[0.07] bg-[rgba(255,255,255,0.032)] no-underline transition-[transform,border-color] duration-200 hover:-translate-y-1 hover:border-[rgba(79,140,255,0.28)]"
+      >
+        {inner}
+      </Link>
+    );
+  }
+
+  return (
+    <article className="proj-card cursor-default overflow-hidden rounded-[18px] border border-white/[0.07] bg-[rgba(255,255,255,0.032)] transition-[transform,border-color] duration-200 hover:-translate-y-1 hover:border-[rgba(79,140,255,0.28)]">
+      {inner}
     </article>
   );
 }

@@ -19,7 +19,13 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'hiredevelopershop.com' },
-      { protocol: 'https', hostname: 'www.hiredevelopershop.com' }
+      { protocol: 'https', hostname: 'www.hiredevelopershop.com' },
+      { protocol: 'https', hostname: 'placehold.co' },
+      {
+        protocol: 'https',
+        hostname: '*.public.blob.vercel-storage.com',
+        pathname: '/**'
+      }
     ]
   },
   async headers() {
@@ -37,16 +43,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: '/hire-react-developer',
-        destination: '/services',
-        permanent: true
-      },
-      {
-        source: '/hire-nodejs-developer',
-        destination: '/services',
-        permanent: true
-      },
       {
         source: '/it-consultancy-services',
         destination: '/services',
