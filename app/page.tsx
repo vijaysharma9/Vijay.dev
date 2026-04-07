@@ -30,27 +30,30 @@ export const revalidate = false;
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = new URL(SITE_URL);
-  const title = 'Hire Dedicated Developers | Affordable Full-Stack & IT Consultancy';
+  const title =
+    'Hire Dedicated Developers | Full-Stack, AI & IT Consultancy | HireDeveloperShop';
   const description =
-    'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web projects. Upwork Top Rated — 8+ years, 50+ projects delivered globally. Get a free consultation.';
+    'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web apps. Upwork Top Rated — 8+ years, 50+ projects, 100% satisfaction. Book a free consultation today.';
 
   return {
     metadataBase: baseUrl,
     title,
     description,
     alternates: {
-      canonical: baseUrl.toString().replace(/\/$/, '') + '/'
+      canonical: 'https://www.hiredevelopershop.com'
     },
     openGraph: {
       type: 'website',
-      url: baseUrl,
-      title,
+      title: 'Hire Dedicated Developers | Full-Stack, AI & IT Consultancy',
       description:
-        'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web projects.',
+        'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web apps. Upwork Top Rated. 50+ projects delivered.',
+      url: 'https://www.hiredevelopershop.com',
       images: [
         {
-          url: new URL('/assets/feature-image.png', baseUrl).toString(),
-          alt: 'HireDeveloperShop'
+          url: new URL('/opengraph-image', baseUrl).toString(),
+          width: 1200,
+          height: 630,
+          alt: 'HireDeveloperShop — Hire Dedicated Developers'
         }
       ]
     },

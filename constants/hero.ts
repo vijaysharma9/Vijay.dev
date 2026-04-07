@@ -1,8 +1,5 @@
 export const HERO = {
   badge: 'Available for New Projects',
-  /** Primary H1 for SEO (single line). */
-  headline:
-    'Hire Dedicated Full-Stack Developers | Affordable IT Consultancy for Startups & Enterprises',
   subtitle:
     'We help startups and enterprises build powerful, scalable digital products from custom web apps to AI integrations at budget-friendly consultancy rates. No bloated agency fees.',
   primaryCtaLabel: 'Hire Me',

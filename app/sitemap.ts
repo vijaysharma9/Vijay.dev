@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/blog/how-to-hire-dedicated-developer-2025`,
       lastModified: new Date('2025-04-01'),
       changeFrequency: monthly,
-      priority: 0.85
+      priority: 0.7
     }
   ];
 
@@ -49,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}/work/${c.slug}`,
     lastModified: lastMod,
     changeFrequency: monthly,
-    priority: 0.75
+    priority: 0.8
   }));
 
   let blogPosts: MetadataRoute.Sitemap = [];

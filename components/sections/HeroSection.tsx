@@ -11,7 +11,11 @@ export default function HeroSection() {
       <div className="hero-inner">
         <div className="hero-badge">{HERO.badge}</div>
 
-        <h1 className="hero-title">{HERO.headline}</h1>
+        <h1 className="hero-title">
+          Hire Dedicated Developers —{' '}
+          <span className="text-blue-400">Full-Stack, AI &amp; IT Consultancy</span>{' '}
+          for Startups &amp; Enterprises
+        </h1>
 
         <p className="hero-sub">{HERO.subtitle}</p>
 

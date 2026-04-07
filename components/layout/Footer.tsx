@@ -1,6 +1,15 @@
 import Link from 'next/link';
 
 export default function Footer() {
+  const footerLinks = [
+    { label: 'Web Development', href: '/services/web-development' },
+    { label: 'AI Solutions', href: '/services/ai-llm-integration' },
+    { label: 'eCommerce', href: '/services/ecommerce' },
+    { label: 'Freelance Team', href: '/about' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Upwork', href: 'https://www.upwork.com/freelancers/~019b3aee9c5d781d36' }
+  ];
+
   return (
     <footer>
       <div className="footer-inner">
@@ -15,30 +24,17 @@ export default function Footer() {
         </div>
 
         <ul className="footer-links" aria-label="Footer navigation">
-          <li>
-            <Link href="/blog">Blog</Link>
-          </li>
-          <li>
-            <Link href="/services">Web Development</Link>
-          </li>
-          <li>
-            <Link href="/services">AI Solutions</Link>
-          </li>
-          <li>
-            <Link href="/services">eCommerce</Link>
-          </li>
-          <li>
-            <Link href="/about">Freelance Team</Link>
-          </li>
-          <li>
-            <a
-              href="https://www.upwork.com/freelancers/~019b3aee9c5d781d36"
-              target="_blank"
-              rel="noopener"
-            >
-              Upwork
-            </a>
-          </li>
+          {footerLinks.map((link) => (
+            <li key={link.label}>
+              {link.href.startsWith('http') ? (
+                <a href={link.href} target="_blank" rel="noopener">
+                  {link.label}
+                </a>
+              ) : (
+                <Link href={link.href}>{link.label}</Link>
+              )}
+            </li>
+          ))}
         </ul>
 
         <div className="footer-copy">
