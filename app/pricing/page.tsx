@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { breadcrumbListSchema } from '@/components/Breadcrumb';
+import { JsonLd } from '@/components/JsonLd';
 import PricingPageClient from '@/components/sections/pricing/PricingPageClient';
 import CompareTable from '@/components/sections/pricing/CompareTable';
 import AddOns from '@/components/sections/pricing/AddOns';
@@ -7,52 +9,87 @@ import BillingProcess from '@/components/sections/pricing/BillingProcess';
 import PricingGuarantees from '@/components/sections/pricing/PricingGuarantees';
 import PricingFAQ from '@/components/sections/pricing/PricingFAQ';
 import PageCta from '@/components/ui/PageCta';
+import { SITE_URL } from '@/constants/navigation';
 import { PLANS } from '@/lib/pricing-data';
 import { buildOrganizationJsonLd, buildWebsiteJsonLd } from '@/lib/schema';
+import {
+  defaultOgImageObjects,
+  OG_IMAGE_PATH,
+  SITE_NAME_OG,
+  siteBaseUrl,
+  TWITTER_SITE
+} from '@/lib/site-og';
+
+const base = SITE_URL.replace(/\/$/, '');
+const pricingUrl = `${base}/pricing`;
+const title = 'Pricing — Fixed-Price Projects from $499 | HireDeveloperShop';
+const description =
+  'Transparent pricing for web development, SaaS, AI integration, and eCommerce. Fixed-price projects from $499 with full IP transfer and 30-day post-launch support.';
+const baseUrl = siteBaseUrl();
+const ogImages = defaultOgImageObjects(baseUrl);
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Pricing — Fixed-Price Projects from $499 | HireDeveloperShop'
+    absolute: title
   },
-  description:
-    'Transparent pricing for web development, SaaS, AI integration, and eCommerce. Fixed-price projects from $499 with full IP transfer and 30-day post-launch support.',
+  description,
+  alternates: { canonical: pricingUrl },
   openGraph: {
-    title: 'Pricing — Fixed-Price Projects from $499 | HireDeveloperShop',
-    description:
-      'Transparent pricing for web development, SaaS, AI integration, and eCommerce. Fixed-price projects from $499 with full IP transfer and 30-day post-launch support.'
+    type: 'website',
+    url: pricingUrl,
+    siteName: SITE_NAME_OG,
+    title,
+    description,
+    images: ogImages
   },
   twitter: {
-    title: 'Pricing — Fixed-Price Projects from $499 | HireDeveloperShop',
-    description:
-      'Transparent pricing for web development, SaaS, AI integration, and eCommerce. Fixed-price projects from $499 with full IP transfer and 30-day post-launch support.'
+    card: 'summary_large_image',
+    site: TWITTER_SITE,
+    title,
+    description,
+    images: [OG_IMAGE_PATH]
   }
 };
 
 function PricingJsonLd() {
-  const priceSpecifications = PLANS.map((plan) => ({
-    '@type': 'Offer',
-    name: `${plan.tier} plan`,
-    url: 'https://www.hiredevelopershop.com/pricing',
-    priceCurrency: 'USD',
-    priceSpecification: [
-      {
+  const starter = PLANS.find((p) => p.id === 'starter')!;
+  const growth = PLANS.find((p) => p.id === 'growth')!;
+
+  const tierOffers = [
+    {
+      '@type': 'Offer',
+      name: 'Starter',
+      description: 'Single-page or landing page projects — starting from $499.',
+      url: pricingUrl,
+      priceCurrency: 'USD',
+      price: String(starter.monthlyPrice)
+    },
+    {
+      '@type': 'Offer',
+      name: 'Growth',
+      description: 'Full-stack web apps and SaaS MVPs — starting from $1,999.',
+      url: pricingUrl,
+      priceCurrency: 'USD',
+      price: String(growth.monthlyPrice)
+    },
+    {
+      '@type': 'Offer',
+      name: 'Enterprise',
+      description: 'Custom enterprise engagements — contact for pricing.',
+      url: `${base}/hire`,
+      priceCurrency: 'USD',
+      priceSpecification: {
         '@type': 'PriceSpecification',
-        name: 'Monthly',
         priceCurrency: 'USD',
-        price: plan.monthlyPrice
-      },
-      {
-        '@type': 'PriceSpecification',
-        name: 'Annual (20% off)',
-        priceCurrency: 'USD',
-        price: plan.annualPrice
+        name: 'Custom',
+        description: 'Scoped per project'
       }
-    ]
-  }));
+    }
+  ];
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@graph': [buildOrganizationJsonLd(), buildWebsiteJsonLd(), ...priceSpecifications]
+    '@graph': [buildOrganizationJsonLd(), buildWebsiteJsonLd(), ...tierOffers]
   };
 
   return (
@@ -66,6 +103,12 @@ function PricingJsonLd() {
 export default function PricingPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbListSchema([
+          { label: 'Home', href: '/' },
+          { label: 'Pricing' }
+        ])}
+      />
       <PricingJsonLd />
       <PricingPageClient />
       <CompareTable />

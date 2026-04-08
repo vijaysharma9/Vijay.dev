@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { breadcrumbListSchema } from '@/components/Breadcrumb';
+import { JsonLd } from '@/components/JsonLd';
 import WorkHero from '@/components/sections/work/WorkHero';
 import FeaturedCaseStudy from '@/components/sections/work/FeaturedCaseStudy';
 import WorkGallery from '@/components/sections/work/WorkGallery';
@@ -8,24 +10,45 @@ import WorkTestimonials from '@/components/sections/work/WorkTestimonials';
 import WorkProcess from '@/components/sections/work/WorkProcess';
 import WorkIndustries from '@/components/sections/work/WorkIndustries';
 import PageCta from '@/components/ui/PageCta';
+import { SITE_URL } from '@/constants/navigation';
 import { PROJECTS } from '@/lib/work-data';
 import { buildItemListJsonLd, buildOrganizationJsonLd, buildWebsiteJsonLd } from '@/lib/schema';
+import {
+  defaultOgImageObjects,
+  OG_IMAGE_PATH,
+  SITE_NAME_OG,
+  siteBaseUrl,
+  TWITTER_SITE
+} from '@/lib/site-og';
+
+const base = SITE_URL.replace(/\/$/, '');
+const workUrl = `${base}/work`;
+const title = 'Work & Case Studies — Real Projects | HireDeveloperShop';
+const description =
+  '50+ real projects across SaaS, AI, eCommerce, HealthTech, FinTech, and IoT. Case studies with real results, timelines, and tech stacks.';
+const baseUrl = siteBaseUrl();
+const ogImages = defaultOgImageObjects(baseUrl);
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Work & Case Studies — Real Projects | HireDeveloperShop'
+    absolute: title
   },
-  description:
-    '50+ real projects across SaaS, AI, eCommerce, HealthTech, FinTech, and IoT. Case studies with real results, timelines, and tech stacks.',
+  description,
+  alternates: { canonical: workUrl },
   openGraph: {
-    title: 'Work & Case Studies — Real Projects | HireDeveloperShop',
-    description:
-      '50+ real projects across SaaS, AI, eCommerce, HealthTech, FinTech, and IoT. Case studies with real results, timelines, and tech stacks.'
+    type: 'website',
+    url: workUrl,
+    siteName: SITE_NAME_OG,
+    title,
+    description,
+    images: ogImages
   },
   twitter: {
-    title: 'Work & Case Studies — Real Projects | HireDeveloperShop',
-    description:
-      '50+ real projects across SaaS, AI, eCommerce, HealthTech, FinTech, and IoT. Case studies with real results, timelines, and tech stacks.'
+    card: 'summary_large_image',
+    site: TWITTER_SITE,
+    title,
+    description,
+    images: [OG_IMAGE_PATH]
   }
 };
 
@@ -52,6 +75,12 @@ function WorkJsonLd() {
 export default function WorkPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbListSchema([
+          { label: 'Home', href: '/' },
+          { label: 'Work' }
+        ])}
+      />
       <WorkJsonLd />
       <WorkHero />
       <WorkGallery />
@@ -80,4 +109,3 @@ export default function WorkPage() {
     </>
   );
 }
-

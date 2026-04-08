@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 
+import { BreadcrumbNav } from '@/components/Breadcrumb';
 import BillingToggle from '@/components/sections/pricing/BillingToggle';
 import { cn } from '@/utils/cn';
 
@@ -29,6 +30,13 @@ export default function PricingHero({
       </div>
 
       <div className="relative z-10 mx-auto max-w-[760px]">
+        <BreadcrumbNav
+          className="mb-6 flex flex-wrap items-center justify-center gap-2 text-sm text-[#7b7b99]"
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Pricing' }
+          ]}
+        />
         <div
           className={cn(
             'mb-8 inline-flex items-center gap-2 rounded-full border border-[rgba(79,140,255,0.25)] bg-[rgba(79,140,255,0.1)] px-[0.9rem] py-[0.32rem] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[#4f8cff] transition-all duration-700 ease-out',

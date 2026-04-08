@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { CONTACT_LINKS, AVAILABILITY_NOTE, type ContactLink } from '@/lib/hire-data';
-
+import { Breadcrumb } from '@/components/Breadcrumb';
 import HireContactLinkIcon from '@/components/sections/hire/HireContactLinkIcon';
+import { CONTACT_LINKS, AVAILABILITY_NOTE, type ContactLink } from '@/lib/hire-data';
 
 import { cn } from '@/utils/cn';
 
@@ -46,6 +46,12 @@ export default function HireHero() {
 
       <div className="relative z-[1] mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-x-[clamp(2rem,5vw,3.5rem)] lg:gap-y-10">
         <div className="max-w-xl lg:max-w-none">
+          <Breadcrumb
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Hire' }
+            ]}
+          />
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[rgba(79,140,255,0.25)] bg-[rgba(79,140,255,0.1)] px-3.5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#4f8cff]">
             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#4f8cff]" aria-hidden />
             Let&apos;s work together

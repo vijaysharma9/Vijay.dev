@@ -1,22 +1,11 @@
 import { SITE_URL } from '@/constants/navigation';
 
-const base = SITE_URL.replace(/\/$/, '');
+import { SERVICE_STUBS } from '@/lib/seo-service-stubs';
+import type { ServiceLandingConfig } from '@/lib/seo-service-types';
 
-export type ServiceLandingConfig = {
-  slug: string;
-  breadcrumbLabel: string;
-  title: string;
-  description: string;
-  canonicalPath: string;
-  ogTitle: string;
-  h1: string;
-  intro: string;
-  sections: { heading: string; body: string }[];
-  serviceType: string;
-  serviceSchemaDescription: string;
-  related: { label: string; href: string }[];
-  caseStudies: { label: string; href: string }[];
-};
+export type { ServiceLandingConfig } from '@/lib/seo-service-types';
+
+const base = SITE_URL.replace(/\/$/, '');
 
 function serviceSchema(cfg: ServiceLandingConfig) {
   return {
@@ -109,7 +98,8 @@ export const SERVICE_LANDING: Record<string, ServiceLandingConfig> = {
     serviceSchemaDescription:
       'Custom web application development including Next.js, React, TypeScript, SSR/SSG, and scalable frontends.',
     related: related.web,
-    caseStudies: [...cases.saas, ...cases.ecom]
+    caseStudies: [...cases.saas, ...cases.ecom],
+    stackTags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'SSR/SSG']
   },
   'saas-development': {
     slug: 'saas-development',
@@ -136,7 +126,8 @@ export const SERVICE_LANDING: Record<string, ServiceLandingConfig> = {
     serviceSchemaDescription:
       'Multi-tenant SaaS application development including billing integration, RBAC, and analytics dashboards.',
     related: related.saas,
-    caseStudies: cases.saas
+    caseStudies: cases.saas,
+    stackTags: ['Multi-tenant', 'Stripe Billing', 'Auth', 'Admin Panel', 'Analytics']
   },
   'ai-llm-integration': {
     slug: 'ai-llm-integration',
@@ -163,7 +154,8 @@ export const SERVICE_LANDING: Record<string, ServiceLandingConfig> = {
     serviceSchemaDescription:
       'LLM integration services including OpenAI, Claude, LangChain, RAG pipelines, and AI agents for SaaS products.',
     related: related.aiLlm,
-    caseStudies: cases.ai
+    caseStudies: cases.ai,
+    stackTags: ['OpenAI API', 'LangChain', 'Claude API', 'RAG', 'Embeddings']
   },
   'ai-automation': {
     slug: 'ai-automation',
@@ -190,7 +182,8 @@ export const SERVICE_LANDING: Record<string, ServiceLandingConfig> = {
     serviceSchemaDescription:
       'AI-powered workflow automation including document processing and business process integration.',
     related: related.aiAuto,
-    caseStudies: cases.ai
+    caseStudies: cases.ai,
+    stackTags: ['n8n', 'Zapier API', 'Make.com', 'Python', 'Custom Pipelines']
   },
   'ai-chatbots': {
     slug: 'ai-chatbots',
@@ -217,7 +210,8 @@ export const SERVICE_LANDING: Record<string, ServiceLandingConfig> = {
     serviceSchemaDescription:
       'Custom AI chatbot development with RAG, CRM integration, and support automation.',
     related: related.aiChat,
-    caseStudies: cases.ai
+    caseStudies: cases.ai,
+    stackTags: ['LangGraph', 'Function Calling', 'Vector DB', 'Pinecone', 'Weaviate']
   },
   ecommerce: {
     slug: 'ecommerce',
@@ -244,7 +238,8 @@ export const SERVICE_LANDING: Record<string, ServiceLandingConfig> = {
     serviceSchemaDescription:
       'eCommerce development including Shopify, custom stores, and payment gateway integration.',
     related: related.ecom,
-    caseStudies: cases.ecom
+    caseStudies: cases.ecom,
+    stackTags: ['Shopify', 'WooCommerce', 'Next Commerce', 'Stripe', 'Razorpay']
   },
   'mobile-development': {
     slug: 'mobile-development',
@@ -271,8 +266,10 @@ export const SERVICE_LANDING: Record<string, ServiceLandingConfig> = {
     serviceSchemaDescription:
       'Mobile application development with React Native, Expo, and native integrations.',
     related: related.mobile,
-    caseStudies: cases.mobile
-  }
+    caseStudies: cases.mobile,
+    stackTags: ['React Native', 'Expo', 'iOS', 'Android', 'PWA']
+  },
+  ...SERVICE_STUBS
 };
 
 export function getServiceLandingSchema(cfg: ServiceLandingConfig) {

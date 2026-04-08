@@ -1151,6 +1151,30 @@ footer {
 
 .footer-copy { font-size: 0.8rem; color: var(--muted); text-align: right; }
 
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.footer-service-heading {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+
+.footer-links-services {
+  column-width: 11rem;
+  max-height: 12rem;
+  overflow-y: auto;
+}
+
 /* ─── SCROLL REVEAL ─── */
 .reveal {
   opacity: 0;

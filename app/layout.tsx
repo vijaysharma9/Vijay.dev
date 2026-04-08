@@ -3,10 +3,7 @@ import { DM_Sans } from 'next/font/google';
 
 import { JsonLd } from '@/components/JsonLd';
 import ConditionalSiteChrome from '@/components/layout/ConditionalSiteChrome';
-import {
-  buildProfessionalServiceSchema,
-  buildWebSiteSearchSchema
-} from '@/lib/seo-jsonld';
+import { buildOrganizationSchema, buildWebSiteSearchSchema } from '@/lib/seo-jsonld';
 
 import './globals.css';
 
@@ -20,7 +17,7 @@ const dmSans = DM_Sans({
   style: ['normal', 'italic']
 });
 
-const ogImagePath = '/assets/feature-image.png';
+const ogImagePath = '/og-image.png';
 
 export async function generateMetadata(): Promise<Metadata> {
   const baseUrl = new URL(siteUrl);
@@ -65,15 +62,15 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
+      site: '@hiredevelopershop',
       title: 'Hire Dedicated Developers | HireDeveloperShop',
       description:
         'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web projects.',
-      images: [new URL(ogImagePath, baseUrl).toString()]
+      images: ['/og-image.png']
     },
     robots: {
       index: true,
       follow: true,
-      nocache: false,
       googleBot: {
         index: true,
         follow: true,
@@ -84,10 +81,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     ...(googleVerification
       ? { verification: { google: googleVerification } }
-      : {}),
-    alternates: {
-      canonical: new URL('/', baseUrl).toString()
-    }
+      : {})
   };
 }
 
@@ -96,13 +90,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://wa.me" />
+        <link rel="preconnect" href="https://www.upwork.com" />
         <link rel="dns-prefetch" href="https://wa.me" />
+        <link rel="alternate" hrefLang="en" href={`${siteUrl.replace(/\/$/, '')}/`} />
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href={`${siteUrl.replace(/\/$/, '')}/`}
+        />
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
         />
-        <JsonLd data={buildProfessionalServiceSchema()} />
+        <JsonLd data={buildOrganizationSchema()} />
         <JsonLd data={buildWebSiteSearchSchema()} />
       </head>
       <body className={dmSans.variable}>

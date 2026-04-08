@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { useInView } from 'framer-motion';
 
+import { BreadcrumbNav } from '@/components/Breadcrumb';
 import { cn } from '@/utils/cn';
 
 const STATS = [
@@ -31,6 +32,13 @@ export default function WorkHero() {
 
       <div className="hero-inner">
         <div className="max-w-[900px]">
+          <BreadcrumbNav
+            className="mb-6 flex flex-wrap items-center gap-2 text-sm text-[#7b7b99]"
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Work' }
+            ]}
+          />
           <div
             className={cn(
               'mb-8 inline-flex items-center gap-2 rounded-full border border-[rgba(79,140,255,0.25)] bg-[rgba(79,140,255,0.1)] px-[0.9rem] py-[0.32rem] font-body text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[#4f8cff] transition-all duration-700 ease-out',

@@ -3,6 +3,13 @@ import { notFound } from 'next/navigation';
 import { CaseStudyPage } from '@/components/seo/CaseStudyPage';
 import { getAllCaseStudySlugs, getCaseStudyBySlug } from '@/lib/case-study-pages';
 import { SITE_URL } from '@/constants/navigation';
+import {
+  defaultOgImageObjects,
+  OG_IMAGE_PATH,
+  SITE_NAME_OG,
+  siteBaseUrl,
+  TWITTER_SITE
+} from '@/lib/site-og';
 
 import type { Metadata } from 'next';
 
@@ -17,17 +24,28 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   if (!study) return {};
   const url = `${base}/work/${study.slug}`;
   const title = `${study.h1.replace(/\s*—\s*Case Study\s*$/i, '').trim()} — Case Study`;
+  const ogTitle = `${title} | HireDeveloperShop`;
+  const baseUrl = siteBaseUrl();
+  const ogImages = defaultOgImageObjects(baseUrl);
   return {
     title,
     description: study.challenge,
     alternates: { canonical: url },
     openGraph: {
-      title: `${title} | HireDeveloperShop`,
-      description: study.challenge,
+      type: 'website',
       url,
-      type: 'article'
+      siteName: SITE_NAME_OG,
+      title: ogTitle,
+      description: study.challenge,
+      images: ogImages
     },
-    twitter: { card: 'summary_large_image', title, description: study.challenge }
+    twitter: {
+      card: 'summary_large_image',
+      site: TWITTER_SITE,
+      title: ogTitle,
+      description: study.challenge,
+      images: [OG_IMAGE_PATH]
+    }
   };
 }
 

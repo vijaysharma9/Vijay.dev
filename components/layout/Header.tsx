@@ -45,7 +45,7 @@ export default function Header() {
   return (
     <nav className={cn(isScrolled && 'nav-scrolled')} aria-label="Primary">
       <div className="nav-inner">
-        <Link href="/" className="nav-logo" aria-label="HireDeveloperShop home">
+        <Link href="/" className="nav-logo" title="HireDeveloperShop home" aria-label="HireDeveloperShop home">
           <span className="brand-word">HireDeveloperShop</span>
           <span className="brand-com">.com</span>
         </Link>

@@ -21,6 +21,13 @@ const AISpotlight = nextDynamic(() => import('@/components/sections/stack/AISpot
 
 import { buildServicesJsonLd } from '@/lib/schema';
 import { buildFaqPageSchema } from '@/lib/seo-jsonld';
+import {
+  defaultOgImageObjects,
+  OG_IMAGE_PATH,
+  SITE_NAME_OG,
+  siteBaseUrl,
+  TWITTER_SITE
+} from '@/lib/site-og';
 import { SERVICES } from '@/constants/services';
 import { HOMEPAGE_FAQS } from '@/constants/homepage-faqs';
 import { SITE_URL } from '@/constants/navigation';
@@ -29,38 +36,35 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = new URL(SITE_URL);
-  const title =
-    'Hire Dedicated Developers | Full-Stack, AI & IT Consultancy | HireDeveloperShop';
+  const baseUrl = siteBaseUrl();
+  const canonical = `${baseUrl.toString().replace(/\/$/, '')}/`;
+  const title = 'Hire Dedicated Developers | Affordable Full-Stack & IT Consultancy';
   const description =
-    'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web apps. Upwork Top Rated — 8+ years, 50+ projects, 100% satisfaction. Book a free consultation today.';
+    'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web projects. Upwork Top Rated — 8+ years, 50+ projects delivered globally. Get a free consultation.';
+  const ogImages = defaultOgImageObjects(baseUrl);
 
   return {
     metadataBase: baseUrl,
     title,
     description,
     alternates: {
-      canonical: 'https://www.hiredevelopershop.com'
+      canonical
     },
     openGraph: {
       type: 'website',
-      title: 'Hire Dedicated Developers | Full-Stack, AI & IT Consultancy',
+      url: canonical,
+      siteName: SITE_NAME_OG,
+      title,
       description:
-        'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web apps. Upwork Top Rated. 50+ projects delivered.',
-      url: 'https://www.hiredevelopershop.com',
-      images: [
-        {
-          url: new URL('/opengraph-image', baseUrl).toString(),
-          width: 1200,
-          height: 630,
-          alt: 'HireDeveloperShop — Hire Dedicated Developers'
-        }
-      ]
+        'Hire dedicated full-stack developers for SaaS, AI, eCommerce & web projects.',
+      images: ogImages
     },
     twitter: {
       card: 'summary_large_image',
+      site: TWITTER_SITE,
       title,
-      description
+      description,
+      images: [OG_IMAGE_PATH]
     }
   };
 }

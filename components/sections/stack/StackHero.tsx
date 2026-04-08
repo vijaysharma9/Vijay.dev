@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 
+import { BreadcrumbNav } from '@/components/Breadcrumb';
 import { HERO_BADGES } from '@/lib/stack-data';
 import { cn } from '@/utils/cn';
 
@@ -59,6 +60,13 @@ export default function StackHero() {
       <div className="hero-inner">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_auto]">
           <div className="max-w-[900px]">
+          <BreadcrumbNav
+            className="mb-6 flex flex-wrap items-center gap-2 text-sm text-[#7b7b99]"
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Tech Stack' }
+            ]}
+          />
           <div
             className={cn(
               'mb-8 inline-flex items-center gap-2 rounded-full border border-[rgba(79,140,255,0.25)] bg-[rgba(79,140,255,0.1)] px-[0.9rem] py-[0.32rem] font-body text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[#4f8cff] transition-all duration-700 ease-out',

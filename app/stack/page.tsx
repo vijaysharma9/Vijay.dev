@@ -23,14 +23,25 @@ const StackPageCta = dynamic(() => import('@/components/sections/stack/StackPage
   ssr: false
 });
 
+import { breadcrumbListSchema } from '@/components/Breadcrumb';
+import { JsonLd } from '@/components/JsonLd';
 import { SITE_URL } from '@/constants/navigation';
 import { STACK_CATEGORIES } from '@/lib/stack-data';
 import { buildOrganizationJsonLd, buildStackItemListJsonLd } from '@/lib/schema';
+import {
+  defaultOgImageObjects,
+  OG_IMAGE_PATH,
+  SITE_NAME_OG,
+  siteBaseUrl,
+  TWITTER_SITE
+} from '@/lib/site-og';
 
 const stackUrl = new URL('/stack', SITE_URL).toString();
 const title = 'Tech Stack — 60+ Technologies | HireDeveloperShop';
 const description =
   'Our full technology stack: React, Next.js, Node.js, Laravel, AWS, OpenAI, Claude AI, Cursor, LangChain and 50+ more — all used in production.';
+const baseUrl = siteBaseUrl();
+const ogImages = defaultOgImageObjects(baseUrl);
 
 export const metadata: Metadata = {
   title: {
@@ -43,13 +54,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: stackUrl,
+    siteName: SITE_NAME_OG,
     title,
-    description
+    description,
+    images: ogImages
   },
   twitter: {
     card: 'summary_large_image',
+    site: TWITTER_SITE,
     title,
-    description
+    description,
+    images: [OG_IMAGE_PATH]
   }
 };
 
@@ -63,6 +78,12 @@ export default function StackPage() {
 
   return (
     <main className="min-h-screen bg-[#09090f] font-body text-[#e8e8f0] antialiased">
+      <JsonLd
+        data={breadcrumbListSchema([
+          { label: 'Home', href: '/' },
+          { label: 'Tech Stack' }
+        ])}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

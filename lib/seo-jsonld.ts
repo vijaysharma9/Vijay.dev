@@ -2,27 +2,35 @@ import { SITE_URL } from '@/constants/navigation';
 
 const base = SITE_URL.replace(/\/$/, '');
 
-export function buildProfessionalServiceSchema() {
+/** Organization — homepage + sitewide identity (replaces generic ProfessionalService). */
+export function buildOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
+    '@type': 'Organization',
     name: 'HireDeveloperShop',
     url: base,
-    logo: `${base}/assets/favicon.png`,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${base}/assets/favicon.png`
+    },
     description:
       'Hire dedicated full-stack developers for SaaS, AI, eCommerce and web projects. Upwork Top Rated agency with 8+ years and 50+ projects delivered.',
-    telephone: '+918527594730',
-    email: 'vijaysharma6918h@gmail.com',
-    areaServed: 'Worldwide',
-    priceRange: '$$$',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+918527594730',
+      email: 'vijaysharma6918h@gmail.com',
+      contactType: 'customer service',
+      areaServed: 'Worldwide',
+      availableLanguage: ['English']
+    },
+    sameAs: ['https://www.upwork.com/freelancers/~019b3aee9c5d781d36'],
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '5.0',
       reviewCount: '50',
       bestRating: '5',
       worstRating: '1'
-    },
-    sameAs: ['https://www.upwork.com/freelancers/~019b3aee9c5d781d36']
+    }
   };
 }
 
@@ -39,6 +47,22 @@ export function buildWebSiteSearchSchema() {
         urlTemplate: `${base}/services?q={search_term_string}`
       },
       'query-input': 'required name=search_term_string'
+    }
+  };
+}
+
+export function buildContactPageSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Start a project — HireDeveloperShop',
+    url: `${base}/hire`,
+    description:
+      'Start a project with HireDeveloperShop — discovery call, scoped proposal, and fixed-price delivery.',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'HireDeveloperShop',
+      url: base
     }
   };
 }

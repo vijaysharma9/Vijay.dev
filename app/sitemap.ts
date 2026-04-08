@@ -18,17 +18,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/`, lastModified: lastMod, changeFrequency: weekly, priority: 1 },
     { url: `${baseUrl}/about`, lastModified: lastMod, changeFrequency: monthly, priority: 0.8 },
     { url: `${baseUrl}/services`, lastModified: lastMod, changeFrequency: weekly, priority: 0.9 },
-    { url: `${baseUrl}/stack`, lastModified: lastMod, changeFrequency: monthly, priority: 0.6 },
+    { url: `${baseUrl}/stack`, lastModified: lastMod, changeFrequency: monthly, priority: 0.7 },
     { url: `${baseUrl}/work`, lastModified: lastMod, changeFrequency: weekly, priority: 0.8 },
-    { url: `${baseUrl}/pricing`, lastModified: lastMod, changeFrequency: weekly, priority: 0.9 },
-    { url: `${baseUrl}/hire`, lastModified: lastMod, changeFrequency: weekly, priority: 1 },
-    { url: `${baseUrl}/blog`, lastModified: lastMod, changeFrequency: weekly, priority: 0.8 },
-    {
-      url: `${baseUrl}/blog/how-to-hire-dedicated-developer-2025`,
-      lastModified: new Date('2025-04-01'),
-      changeFrequency: monthly,
-      priority: 0.7
-    }
+    { url: `${baseUrl}/pricing`, lastModified: lastMod, changeFrequency: monthly, priority: 0.7 },
+    { url: `${baseUrl}/hire`, lastModified: lastMod, changeFrequency: monthly, priority: 0.9 },
+    { url: `${baseUrl}/blog`, lastModified: lastMod, changeFrequency: weekly, priority: 0.7 }
   ];
 
   const servicePages: MetadataRoute.Sitemap = Object.keys(SERVICE_LANDING).map((slug) => ({
@@ -42,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}${h.path}`,
     lastModified: lastMod,
     changeFrequency: monthly,
-    priority: 0.95
+    priority: 0.85
   }));
 
   const casePages: MetadataRoute.Sitemap = CASE_STUDIES.map((c) => ({
@@ -55,17 +49,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let blogPosts: MetadataRoute.Sitemap = [];
   try {
     const { rows } = await sql`
-      SELECT slug, updated_at FROM posts WHERE status = 'published'
+      SELECT slug,
+             COALESCE(updated_at, published_at) AS last_mod
+      FROM posts
+      WHERE status = 'published'
     `;
     blogPosts = rows.map((row) => {
-      const post = row as { slug: string; updated_at: Date | string };
+      const post = row as { slug: string; last_mod: Date | string | null };
+      const lm =
+        post.last_mod instanceof Date
+          ? post.last_mod
+          : post.last_mod
+            ? new Date(post.last_mod)
+            : lastMod;
       return {
         url: `${baseUrl}/blog/${post.slug}`,
-        lastModified:
-          post.updated_at instanceof Date
-            ? post.updated_at
-            : new Date(post.updated_at),
-        changeFrequency: monthly,
+        lastModified: lm,
+        changeFrequency: weekly,
         priority: 0.7
       };
     });
@@ -73,11 +73,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     /* no POSTGRES_URL at build */
   }
 
-  return [
-    ...staticPages,
-    ...servicePages,
-    ...hirePages,
-    ...casePages,
-    ...blogPosts
-  ];
+  return [...staticPages, ...servicePages, ...hirePages, ...casePages, ...blogPosts];
 }

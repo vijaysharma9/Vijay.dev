@@ -14,7 +14,18 @@ const SLUG_BADGE_ICON: Record<string, string> = {
   'ai-automation': '⚙️',
   'ai-chatbots': '💬',
   ecommerce: '🛒',
-  'mobile-development': '📱'
+  'mobile-development': '📱',
+  'frontend-development': '🎨',
+  'backend-development': '⚙️',
+  'qa-testing': '🧪',
+  'iot-embedded': '📡',
+  'cloud-devops': '☁️',
+  'php-laravel': '🐘',
+  'legacy-migration': '🔄',
+  'cms-nocode': '📝',
+  'database-architecture': '🗄️',
+  'technical-seo': '📈',
+  'it-consultancy': '💡'
 };
 
 const SECTION_ACCENTS = [
@@ -138,6 +149,21 @@ export default function ServiceLandingPage({ config }: { config: ServiceLandingC
                   </div>
                   <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 md:p-8">
                     <p className="text-base leading-relaxed text-white/75 md:text-lg">{config.intro}</p>
+                    {config.stackTags.length > 0 ? (
+                      <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-6">
+                        <span className="w-full text-xs font-bold uppercase tracking-widest text-white/35">
+                          Tech stack
+                        </span>
+                        {config.stackTags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-md border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/70"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
 
