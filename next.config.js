@@ -42,6 +42,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.hiredevelopershop.com' }],
+        destination: 'https://hiredevelopershop.com/:path*',
+        permanent: true
+      },
       { source: '/service', destination: '/services', permanent: true },
       { source: '/portfolio', destination: '/work', permanent: true },
       { source: '/contact', destination: '/hire', permanent: true },

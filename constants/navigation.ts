@@ -1,5 +1,5 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.hiredevelopershop.com';
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://hiredevelopershop.com';
 
 export type NavigationItem = {
   id: string;
