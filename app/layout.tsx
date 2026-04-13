@@ -3,12 +3,12 @@ import { DM_Sans } from 'next/font/google';
 
 import { JsonLd } from '@/components/JsonLd';
 import ConditionalSiteChrome from '@/components/layout/ConditionalSiteChrome';
+import { SITE_URL } from '@/constants/navigation';
 import { buildOrganizationSchema, buildWebSiteSearchSchema } from '@/lib/seo-jsonld';
 
 import './globals.css';
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.hiredevelopershop.com';
+const siteUrl = SITE_URL;
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
       'AI integration services',
       'hire next.js developer'
     ],
-    authors: [{ name: 'HireDeveloperShop', url: 'https://www.hiredevelopershop.com' }],
+    authors: [{ name: 'HireDeveloperShop', url: siteUrl }],
     creator: 'HireDeveloperShop',
     openGraph: {
       type: 'website',
